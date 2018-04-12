@@ -1,0 +1,6 @@
+As a user, I want to adjust the volume level at any time, so that I can cater to my physical surroundings.
+
+As a player, I want to move in more than one direction, so that I can navigate effectively.
+
+As a user, I want a pause option, so that I can temporarily stop my game plan.
+
