@@ -1,0 +1,6 @@
+The system shall create a fictional 2D character to be displayed onto the screen.
+
+The system shall enable a horizontal side scrolling interface.
+
+The system shall only allow for a single user to play throughout the course of a gaming session.
+
