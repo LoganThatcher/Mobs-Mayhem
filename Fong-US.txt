@@ -1,0 +1,5 @@
+1. As a user, I want a soundtrack, so that the game is more immersive.
+2. As a novice player, I want an option to have extra lives, to make the game easier and more forgiving.
+3. As a player, I want easter eggs*, to extend my interest and give me a sense of accomplishment.
+
+*Easter eggs are hidden messages or secret features often hidden in video games or other computer programs. 
