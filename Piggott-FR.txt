@@ -1,5 +1,0 @@
-1.  The system shall provide the player’s score. 
-2. The system shall provide a mini-game* when the player interacts with a non-player character.
-3. The system shall display the number of times the player has been caught.
-
-*a game that has a short length of time to complete. It is within the larger game.

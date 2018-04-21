@@ -1,4 +1,0 @@
-7. As a user, I want the game to have a mode with one enemy, so I can focus on the story.
-8. As a user, I want a save state, so that I do not have to restart the game.
-9. As a user, I want mini-games* inside the storyline, so that I can play for a longer time.
-

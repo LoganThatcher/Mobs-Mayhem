@@ -1,3 +1,0 @@
-1) The system shall save the game state and allow the player to continue from where they left.
-2) The system shall allow the user to change the volume of the music and sound effects separately.
-3) The system shall display a warning sign when an enemy appears on screen.
