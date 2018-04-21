@@ -1,0 +1,5 @@
+
+4. The system shall create enemies for the player at a scheduled rate.
+5. The system shall provide a minigame when the user sees a npc**.
+6. The system shall provide an end game state once the user is caught by the police 3 times.
+

@@ -1,0 +1,4 @@
+1. The system shall provide a score.
+2. The system shall provide an end state when the game is over.
+3. The system shall provide a name prompt at the beginning of the game.
+
