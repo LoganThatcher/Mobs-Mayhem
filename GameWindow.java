@@ -1,3 +1,7 @@
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.image.Image;
+
 import javafx.event.ActionEvent;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -9,6 +13,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern; 
+import javafx.scene.image.Image;
  
 public class GameWindow
 {
@@ -19,6 +25,14 @@ public class GameWindow
     
 	public GameWindow(Scene game) {
 		rootGroup = new Group();
+		
+		
+		String url = "cobblestone.jpg";
+		Image img = new Image(url);
+		
+		ImagePattern pattern = new ImagePattern(img);
+		game.setFill(pattern);
+		
 		
     	Circle circle = new Circle();
     	

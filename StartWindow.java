@@ -4,11 +4,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern; 
  
 public class StartWindow extends Application 
 {
@@ -16,7 +18,6 @@ public class StartWindow extends Application
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	private static final Group root = new Group();
-	private static final Group game_root = new Group();
 	
     
 	public static void main(String[] args) 
@@ -32,6 +33,13 @@ public class StartWindow extends Application
     	startGame = new Button("Start Game");
     	
     	
+		String url = "start_screen.jpg";
+		Image img = new Image(url);
+		
+		ImagePattern pattern = new ImagePattern(img);
+		home.setFill(pattern);
+
+		
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
         root.getChildren().add(startGame);
