@@ -48,7 +48,7 @@ public class StartWindow extends Application
         
         
     	startGame.setOnAction(e -> {
-    		GameWindow game = new GameWindow(home);
+    		GameWindow game = new GameWindow(home,stage);
     		stage.getScene().setRoot(game.getRootGroup());
     	});
     	
