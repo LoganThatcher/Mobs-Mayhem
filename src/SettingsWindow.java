@@ -31,7 +31,7 @@ public class SettingsWindow {
 		rootGroup = new Group();
 		t = new Text();
 		Button back = new Button("Back To Main Menu");
-		String url = "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/m8eSsjS/chroma-key-black-screen_hthm4fwfx_thumbnail-full01.png";
+		String url = "assets/blackscreen.png";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		set.setFill(pattern);
