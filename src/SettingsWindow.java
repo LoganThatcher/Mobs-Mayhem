@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern; 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class SettingsWindow {
 
@@ -35,11 +36,12 @@ public class SettingsWindow {
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		set.setFill(pattern);
+		
+	    t.setFont(Font.font("Verdana", 50));
 		t.setText("LOL you have no settings options");
 		t.setFill(Color.WHITE);
 		t.setX(30.0);
 		t.setY(300.0);
-		t.setFont(Font.font("Verdana", 50));
 		back.setLayoutX(600);
 		back.setLayoutY(500);
 		back.setPrefSize(300, 100);
@@ -49,7 +51,7 @@ public class SettingsWindow {
 		rootGroup.getChildren().addAll(back, t);
 		
 		back.setOnAction(e -> {
-			//go back to StartWindow
+			//go to StartWindow
 		});  
 
 	}
