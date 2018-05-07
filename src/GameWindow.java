@@ -65,35 +65,50 @@ public class GameWindow
             		if(!(circle.getCenterX() == 0))
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
-            		rootGroup.setEffect(new GaussianBlur());
-                  	
-                	  VBox pauseRoot = new VBox(5);
-                	  pauseRoot.getChildren().add(new Label("Paused"));
-                    pauseRoot.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8);");
-                    pauseRoot.setAlignment(Pos.CENTER);
-                    pauseRoot.setPadding(new Insets(20));
-                  
-                    
-                    Button resume = new Button("RESUME");
-                    pauseRoot.getChildren().add(resume);
-                    
-                    Stage popupStage = new Stage(StageStyle.TRANSPARENT);
-                    popupStage.initOwner(primaryStage);
-                    popupStage.initModality(Modality.APPLICATION_MODAL);
-                    popupStage.setScene(new Scene(pauseRoot, Color.TRANSPARENT));
-                    
-                    resume.setOnAction(e ->{
-                    	rootGroup.setEffect(null);
-                    	popupStage.hide();
-                    });
-                    
-                    popupStage.show();
-            		
+            		pause(scene,primaryStage);
           
             }
           }
         });
       }
+    
+    private void pause(Scene scene,Stage primaryStage) {
+	
+    	rootGroup.setEffect(new GaussianBlur());
+      	
+	  	VBox pauseRoot = new VBox(5);
+	  	pauseRoot.getChildren().add(new Label("Paused"));
+	    pauseRoot.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8);");
+	    pauseRoot.setAlignment(Pos.CENTER);
+	    pauseRoot.setPadding(new Insets(20));
+	    
+	      
+	    Button resume = new Button("RESUME");
+	    pauseRoot.getChildren().add(resume);
+	      
+	    Stage popupStage = new Stage(StageStyle.TRANSPARENT);
+	    popupStage.initOwner(primaryStage);
+	    popupStage.initModality(Modality.APPLICATION_MODAL);
+	    popupStage.setScene(new Scene(pauseRoot, Color.TRANSPARENT));
+	      
+	    resume.setOnAction(e ->{
+	    	rootGroup.setEffect(null);
+	      	popupStage.hide();
+	    });
+	    pauseRoot.setOnKeyPressed(new EventHandler<KeyEvent>() {
+	          @Override public void handle(KeyEvent event) {
+	            switch (event.getCode()) {
+	            	case ESCAPE: 
+	            		rootGroup.setEffect(null);
+	        	      	popupStage.hide();
+	            }
+	          }
+	        });
+	      
+	    popupStage.show();
+	
+    
+    }
     
     public Group getRootGroup() {
     	return rootGroup;

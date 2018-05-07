@@ -1,18 +1,13 @@
-import javafx.event.ActionEvent;
-import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -22,7 +17,6 @@ import javafx.scene.text.FontWeight;
  
 public class StartWindow extends Application 
 {
-	private static final int KEYBOARD_MOVEMENT_DELTA = 5;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	static final Group root = new Group();
