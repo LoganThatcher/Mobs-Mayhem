@@ -1,7 +1,5 @@
 import javafx.event.ActionEvent;
-
 import java.nio.file.Paths;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -67,10 +65,24 @@ public class StartWindow extends Application
 		
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
-        howToPlay.setLayoutX(0);
-        howToPlay.setLayoutY(28);
-        settings.setLayoutX(0);
-        settings.setLayoutY(56);
+        howToPlay.setLayoutX(225);
+        howToPlay.setLayoutY(400);
+        settings.setLayoutX(350);
+        settings.setLayoutY(400);
+        startGame.setLayoutX(475);
+        startGame.setLayoutY(400);
+        startGame.setPrefSize(150, 100);
+        howToPlay.setPrefSize(150, 100);
+        settings.setPrefSize(150, 100);
+        settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        settings.setOnMouseEntered(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        startGame.setOnMouseEntered(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        howToPlay.setOnMouseEntered(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
         root.getChildren().addAll(startGame, howToPlay, settings, t);
         stage.show();
         
