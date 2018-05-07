@@ -40,8 +40,12 @@ public class SettingsWindow {
 		t.setX(30.0);
 		t.setY(300.0);
 		t.setFont(Font.font("Verdana", 50));
-		back.setLayoutX(0);
-		back.setLayoutY(0);
+		back.setLayoutX(600);
+		back.setLayoutY(500);
+		back.setPrefSize(300, 100);
+		back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		back.setOnMouseEntered(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 		rootGroup.getChildren().addAll(back, t);
 		
 		back.setOnAction(e -> {
