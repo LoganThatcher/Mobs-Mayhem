@@ -46,7 +46,7 @@ public class StartWindow extends Application
 		AudioClip click_player = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
 		AudioClip click2_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
 	    Scene home = new Scene(root, map_width, map_height);
-    	Button startGame, howToPlay, settings, mute;
+    	Button startGame, howToPlay, settings, mute, instructions;
     	Text t;
     	Media m;
     	Image img;
@@ -63,6 +63,7 @@ public class StartWindow extends Application
     	startGame.setFont(font);
     	howToPlay = new Button("How To Play");
     	settings = new Button("Settings");
+    	instructions = new Button("Instructions");
     	
     	
     	//Mute and Unmute images
@@ -94,22 +95,26 @@ public class StartWindow extends Application
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
         
-        howToPlay.setLayoutX(225);
+        howToPlay.setLayoutX(200);
         howToPlay.setLayoutY(400);
-        settings.setLayoutX(350);
+        settings.setLayoutX(325);
         settings.setLayoutY(400);
-        startGame.setLayoutX(475);
+        instructions.setLayoutX(450);
+        instructions.setLayoutY(400);
+        startGame.setLayoutX(575);
         startGame.setLayoutY(400);
         
         startGame.setPrefSize(150, 100);
         howToPlay.setPrefSize(150, 100);
         settings.setPrefSize(150, 100);
+        instructions.setPrefSize(150, 100);
         
         
-        
-       
-        
-        
+        instructions.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        instructions.setOnMouseEntered(e -> {
+        	instructions.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+        	click_player.play();
+        });
         settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         settings.setOnMouseEntered(e -> {
         	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
@@ -132,7 +137,7 @@ public class StartWindow extends Application
         howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
         
         
-        root.getChildren().addAll(startGame, howToPlay, settings, t, mute);
+        root.getChildren().addAll(startGame, howToPlay, settings, t, mute, instructions);
         stage.show();
         
         
@@ -148,7 +153,14 @@ public class StartWindow extends Application
     		SettingsWindow set = new SettingsWindow(home);
     		stage.getScene().setRoot(set.getRootGroup());
     		click2_player.play();
-    	});   
+    	});
+
+    	instructions.setOnAction( e -> {
+    		InstructionsWindow instruct = new InstructionsWindow(home);
+    		stage.getScene().setRoot(instruct.getRootGroup());
+    		click2_player.play();
+    	});
+
     	
     	mute.setOnAction(e -> {
     		if(muted) {

@@ -109,8 +109,9 @@ public class GameWindow
 	    Button resume = new Button("RESUME");
 	    Button restart = new Button("RESTART");
 	    Button settings = new Button("SETTINGS");
+	    Button instructions = new Button("INSTRUCTIONS");
 	    Button quit = new Button("QUIT");
-	    pauseRoot.getChildren().addAll(resume,restart,settings,quit);
+	    pauseRoot.getChildren().addAll(resume,restart,settings,instructions,quit);
 
 	    
 	    Stage popupStage = new Stage(StageStyle.TRANSPARENT);
@@ -126,6 +127,12 @@ public class GameWindow
 	    settings.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(scene);
     		primaryStage.getScene().setRoot(set.getRootGroup());
+    		rootGroup.setEffect(null);;
+    		popupStage.hide();
+    	});
+	    instructions.setOnAction(e -> {
+    		InstructionsWindow instruct = new InstructionsWindow(scene);
+    		primaryStage.getScene().setRoot(instruct.getRootGroup());
     		rootGroup.setEffect(null);;
     		popupStage.hide();
     	});
