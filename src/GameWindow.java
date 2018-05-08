@@ -7,21 +7,17 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
 import java.net.URISyntaxException;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.AudioClip;
 
 public class GameWindow
 {
@@ -29,10 +25,11 @@ public class GameWindow
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	private final Group rootGroup;	
-	MediaPlayer click_player;
-    
-	public GameWindow(Scene game, Stage primaryStage) {
+	AudioClip click_player;
+
+	public GameWindow(Scene game, Stage primaryStage){
 		rootGroup = new Group();
+		
 		
 		
 		String url = "assets/cobblestone.jpg";
@@ -83,17 +80,13 @@ public class GameWindow
       }
     
     private void pause(Stage primaryStage, Scene scene){
-	
+    
 		try {
-			Media click = new Media(getClass().getResource("assets/click2.mp3").toURI().toString());
-			click_player = new MediaPlayer(click);
-			click_player.seek(new Duration(0));
-	     	click_player.play();
+			click_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
+			click_player.play();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}
-    	
-    	
     	
      	rootGroup.setEffect(new GaussianBlur());
     	Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);	
@@ -140,7 +133,6 @@ public class GameWindow
 	          @Override public void handle(KeyEvent event) {
 	            switch (event.getCode()) {
 	            	case ESCAPE: 
-	            		click_player.seek(new Duration(0));
 	                 	click_player.play();
 	            		rootGroup.setEffect(null);
 	        	      	popupStage.hide();

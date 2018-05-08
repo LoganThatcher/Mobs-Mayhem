@@ -82,7 +82,7 @@ public class StartWindow extends Application
     	//Music
     	m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
-	    mp.setVolume(0.5);
+	    mp.setVolume(0.35);
 	    mp.play(); 
 	    muted = false;
 
@@ -138,8 +138,8 @@ public class StartWindow extends Application
         
     	startGame.setOnAction(e -> {
     		
-    		GameWindow game = new GameWindow(home,stage);
-    		stage.getScene().setRoot(game.getRootGroup());
+    		LoadWindow load = new LoadWindow(home,stage);
+    		stage.getScene().setRoot(load.getRootGroup());
     		click2_player.play();
     		
     	});
