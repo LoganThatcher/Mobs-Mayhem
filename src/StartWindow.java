@@ -1,4 +1,5 @@
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -6,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
@@ -14,7 +16,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.text.Font;
  
 public class StartWindow extends Application 
@@ -106,17 +107,36 @@ public class StartWindow extends Application
         howToPlay.setPrefSize(150, 100);
         settings.setPrefSize(150, 100);
         
+        
+        Media click = new Media(getClass().getResource("assets/click.mp3").toURI().toString());
+        MediaPlayer click_player = new MediaPlayer(click);
+        
+        
         settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-        settings.setOnMouseEntered(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        settings.setOnMouseEntered(e -> {
+        	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+        	click_player.seek(new Duration(0));
+        	click_player.play();
+        });
         settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
         
         startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-        startGame.setOnMouseEntered(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        startGame.setOnMouseEntered(e -> {
+        	startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+        	click_player.seek(new Duration(0));
+        	click_player.play();
+        });
         startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
         
         howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-        howToPlay.setOnMouseEntered(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+        howToPlay.setOnMouseEntered(e -> {
+        	howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+        	click_player.seek(new Duration(0));
+        	click_player.play();
+        });
         howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        
+        
         root.getChildren().addAll(startGame, howToPlay, settings, t, mute);
         stage.show();
         

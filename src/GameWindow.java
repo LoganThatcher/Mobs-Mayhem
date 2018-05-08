@@ -5,19 +5,23 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.net.URISyntaxException;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.input.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameWindow
 {
@@ -25,6 +29,7 @@ public class GameWindow
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	private final Group rootGroup;	
+	MediaPlayer click_player;
     
 	public GameWindow(Scene game, Stage primaryStage) {
 		rootGroup = new Group();
@@ -37,14 +42,14 @@ public class GameWindow
 		ImagePattern pattern = new ImagePattern(img);
 		game.setFill(pattern);
 		
-		Circle circle = new Circle();
+		Circle player = new Circle();
     	
-        circle.setCenterX(40);
-        circle.setCenterY(40);
-        circle.setRadius(10);
-        rootGroup.getChildren().add(circle);
+        player.setCenterX(40);
+        player.setCenterY(40);
+        player.setRadius(10);
+        rootGroup.getChildren().add(player);
         
-        moveCircleOnKeyPress(game, circle,primaryStage);
+        moveCircleOnKeyPress(game, player,primaryStage);
         
 	}
 
@@ -77,9 +82,20 @@ public class GameWindow
         });
       }
     
-    private void pause(Stage primaryStage, Scene scene) {
+    private void pause(Stage primaryStage, Scene scene){
 	
-    	rootGroup.setEffect(new GaussianBlur());
+		try {
+			Media click = new Media(getClass().getResource("assets/click2.mp3").toURI().toString());
+			click_player = new MediaPlayer(click);
+			click_player.seek(new Duration(0));
+	     	click_player.play();
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		}
+    	
+    	
+    	
+     	rootGroup.setEffect(new GaussianBlur());
     	Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);	
       	
 	  	VBox pauseRoot = new VBox(5);
@@ -124,6 +140,8 @@ public class GameWindow
 	          @Override public void handle(KeyEvent event) {
 	            switch (event.getCode()) {
 	            	case ESCAPE: 
+	            		click_player.seek(new Duration(0));
+	                 	click_player.play();
 	            		rootGroup.setEffect(null);
 	        	      	popupStage.hide();
 	            	default:
