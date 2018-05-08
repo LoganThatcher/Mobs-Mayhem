@@ -4,16 +4,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-import javafx.event.EventHandler;
-import javafx.scene.input.*;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
  
 public class StartWindow extends Application 
 {
@@ -21,7 +18,9 @@ public class StartWindow extends Application
 	private static final int map_width = 900;
 	static final Group root = new Group();
 	MediaPlayer mp;
-	
+	boolean muted;	
+	Image unmute_image, mute_image;
+	ImageView unmute_iv, mute_iv;
     
 	public static void main(String[] args) 
     {
@@ -37,6 +36,7 @@ public class StartWindow extends Application
     	Button startGame;
     	Button howToPlay;
     	Button settings;
+    	Button mute;
     	
     	Text t = new Text(250, 175, "Mob Mayhem");
     	t.setFont(font);
@@ -45,13 +45,29 @@ public class StartWindow extends Application
     	startGame.setFont(font);
     	howToPlay = new Button("How To Play");
     	settings = new Button("Settings");
+    	
+    	
+    	
+    	unmute_image = new Image(getClass().getResourceAsStream("assets/unmute.png"));
+    	unmute_iv = new ImageView(unmute_image);
+    	unmute_iv.setFitHeight(15);
+    	unmute_iv.setFitWidth(15);
+    	
+    	mute_image = new Image(getClass().getResourceAsStream("assets/mute.png"));
+    	mute_iv = new ImageView(mute_image);
+    	mute_iv.setFitHeight(15);
+    	mute_iv.setFitWidth(15);
+    	
+    	mute = new Button("",unmute_iv);
+    	
 
-    	/*
+    	
     	Media m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
 	    mp.setVolume(0.5);
 	    mp.play(); //Comment this out if you don't want music to play
-*/
+	    muted = false;
+
    	
 		String url = "assets/start_screen.jpg";
 		Image img = new Image(url);
@@ -83,7 +99,7 @@ public class StartWindow extends Application
         howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         howToPlay.setOnMouseEntered(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
         howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
-        root.getChildren().addAll(startGame, howToPlay, settings, t);
+        root.getChildren().addAll(startGame, howToPlay, settings, t, mute);
         stage.show();
         
         
@@ -96,6 +112,18 @@ public class StartWindow extends Application
     		SettingsWindow set = new SettingsWindow(home);
     		stage.getScene().setRoot(set.getRootGroup());
     	});   
+    	
+    	mute.setOnAction(e -> {
+    		if(muted) {
+    			mp.play();
+    			mute.setGraphic(unmute_iv);
+    			muted = false;
+    		}else {
+    			mp.pause();
+    			mute.setGraphic(mute_iv);
+    			muted = true;
+    		}
+    	}); 
     	
     }
    

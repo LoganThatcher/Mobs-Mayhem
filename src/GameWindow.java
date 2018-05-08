@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -67,6 +66,8 @@ public class GameWindow
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
             		pause(primaryStage);
+            	default:
+            		break;
           
             }
           }
@@ -115,6 +116,8 @@ public class GameWindow
 	            	case ESCAPE: 
 	            		rootGroup.setEffect(null);
 	        	      	popupStage.hide();
+	            	default:
+	            		break;
 	            }
 	          }
 	        });
