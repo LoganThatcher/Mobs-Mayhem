@@ -1,6 +1,10 @@
+
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.Font;
  
 public class StartWindow extends Application 
@@ -31,6 +36,16 @@ public class StartWindow extends Application
 	@Override
     public void start(Stage stage) throws Exception
     {	
+		/*
+	    Screen screen = Screen.getPrimary();
+	    Rectangle2D bounds = screen.getVisualBounds();
+	    stage.setX(bounds.getMinX());
+	    stage.setY(bounds.getMinY());
+	    stage.setWidth(bounds.getWidth());
+	    stage.setHeight(bounds.getHeight());
+	    */
+		
+		//Declarations
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
 	    Scene home = new Scene(root, map_width, map_height);
     	Button startGame;
@@ -38,16 +53,19 @@ public class StartWindow extends Application
     	Button settings;
     	Button mute;
     	
-    	Text t = new Text(250, 175, "Mob Mayhem");
+    	//Main Title
+    	Text t = new Text(225,160,"Mob Mayhem");
     	t.setFont(font);
     	t.setFill(Color.WHITE);
+    	
+    	//Buttons
     	startGame = new Button("Start Game");
     	startGame.setFont(font);
     	howToPlay = new Button("How To Play");
     	settings = new Button("Settings");
     	
     	
-    	
+    	//Mute and Unmute images
     	unmute_image = new Image(getClass().getResourceAsStream("assets/unmute.png"));
     	unmute_iv = new ImageView(unmute_image);
     	unmute_iv.setFitHeight(15);
@@ -61,11 +79,11 @@ public class StartWindow extends Application
     	mute = new Button("",unmute_iv);
     	
 
-    	
+    	//Music
     	Media m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
 	    mp.setVolume(0.5);
-	    mp.play(); //Comment this out if you don't want music to play
+	    mp.play(); 
 	    muted = false;
 
    	
