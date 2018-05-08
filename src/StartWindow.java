@@ -1,16 +1,11 @@
-
-import java.io.File;
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -48,14 +43,18 @@ public class StartWindow extends Application
 		
 		//Declarations
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
+		AudioClip click_player = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
+		AudioClip click2_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
 	    Scene home = new Scene(root, map_width, map_height);
-    	Button startGame;
-    	Button howToPlay;
-    	Button settings;
-    	Button mute;
+    	Button startGame, howToPlay, settings, mute;
+    	Text t;
+    	Media m;
+    	Image img;
+    	ImagePattern pattern;
+
     	
     	//Main Title
-    	Text t = new Text(225,160,"Mob Mayhem");
+    	t = new Text(225,160,"Mob Mayhem");
     	t.setFont(font);
     	t.setFill(Color.WHITE);
     	
@@ -81,17 +80,16 @@ public class StartWindow extends Application
     	
 
     	//Music
-    	Media m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
+    	m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
 	    mp.setVolume(0.5);
 	    mp.play(); 
 	    muted = false;
 
    	
-		String url = "assets/start_screen.jpg";
-		Image img = new Image(url);
+		img = new Image("assets/start_screen.jpg");
 		
-		ImagePattern pattern = new ImagePattern(img);
+		pattern = new ImagePattern(img);
 		home.setFill(pattern);
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
@@ -108,14 +106,13 @@ public class StartWindow extends Application
         settings.setPrefSize(150, 100);
         
         
-        Media click = new Media(getClass().getResource("assets/click.mp3").toURI().toString());
-        MediaPlayer click_player = new MediaPlayer(click);
+        
+       
         
         
         settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         settings.setOnMouseEntered(e -> {
         	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.seek(new Duration(0));
         	click_player.play();
         });
         settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
@@ -123,7 +120,6 @@ public class StartWindow extends Application
         startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         startGame.setOnMouseEntered(e -> {
         	startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.seek(new Duration(0));
         	click_player.play();
         });
         startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
@@ -131,7 +127,6 @@ public class StartWindow extends Application
         howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         howToPlay.setOnMouseEntered(e -> {
         	howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.seek(new Duration(0));
         	click_player.play();
         });
         howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
@@ -142,13 +137,17 @@ public class StartWindow extends Application
         
         
     	startGame.setOnAction(e -> {
+    		
     		GameWindow game = new GameWindow(home,stage);
     		stage.getScene().setRoot(game.getRootGroup());
+    		click2_player.play();
+    		
     	});
     	
     	settings.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(home);
     		stage.getScene().setRoot(set.getRootGroup());
+    		click2_player.play();
     	});   
     	
     	mute.setOnAction(e -> {
