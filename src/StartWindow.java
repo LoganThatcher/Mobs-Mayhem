@@ -32,15 +32,17 @@ public class StartWindow extends Application
 	@Override
     public void start(Stage stage) throws Exception
     {	
+		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
 	    Scene home = new Scene(root, map_width, map_height);
     	Button startGame;
     	Button howToPlay;
     	Button settings;
-    	Text t = new Text(250, 100, "Mobs & Mayhem");
-    	t.setFill(Color.RED);
-    	//t.setFont(Font.loadFont("assets/Corleone.ttf", 120));
-    	t.setFont(Font.font("Verdana", 50));
+    	
+    	Text t = new Text(250, 175, "Mob Mayhem");
+    	t.setFont(font);
+    	t.setFill(Color.WHITE);
     	startGame = new Button("Start Game");
+    	startGame.setFont(font);
     	howToPlay = new Button("How To Play");
     	settings = new Button("Settings");
 
