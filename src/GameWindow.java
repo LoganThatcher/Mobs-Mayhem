@@ -29,67 +29,69 @@ public class GameWindow
 	private static final int KEYBOARD_MOVEMENT_DELTA = 10;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
+	private static final Color cop_color = Color.BLUE;
+	private static final Color player_color = Color.BLACK;
+	private static final Color cit_color = Color.ANTIQUEWHITE;
 	private final Group rootGroup;	
 	AudioClip click_player;
 	
 	Random ran = new Random();
 
 	public GameWindow(Scene game, Stage primaryStage){
-		rootGroup = new Group();
-		
 		String url = "assets/cobblestone.jpg";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
-		game.setFill(pattern);
-		
-		
+		Timeline circMover;
 		Circle cop = new Circle();
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
-		Timeline circMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
-
+		game.setFill(pattern);
+		rootGroup = new Group();
+			
+		circMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
 		        moveCircleRandomly(cop);
 		        moveCircleRandomly(cit);
 		        checkCollisions(cop, player);
+		        checkCollisions(cit,player);
 		    }
 		}));
 		circMover.setCycleCount(Timeline.INDEFINITE);
 		circMover.play();
+
 		
-		
-		
-		
-     
-			
-        player.setCenterX(40);
-        player.setCenterY(40);
+		// Character placements and settings	
+        player.setCenterX(map_width/2);
+        player.setCenterY(map_height/2);
         player.setRadius(10);
+        player.setFill(player_color);
         
-        cop.setCenterX(40);
-        cop.setCenterY(40);
+        cop.setCenterX(140);
+        cop.setCenterY(140);
         cop.setRadius(10);
-        cop.setFill(Color.BLUE);
+        cop.setFill(cop_color);
         
         cit.setCenterX(40);
         cit.setCenterY(40);
         cit.setRadius(10);
-        cit.setFill(Color.ANTIQUEWHITE);
+        cit.setFill(cit_color);
         
         rootGroup.getChildren().addAll(player, cop,cit);
-        
         moveCircleOnKeyPress(game, player,primaryStage);
-        
 	}
 
 	private void checkCollisions(Circle a, Circle b) {
-		if((a.getCenterY()-b.getCenterY() < 10) && 
-				(a.getCenterX()-b.getCenterX() < 10) ) {
-			System.out.println("You're arrested");
-			
+		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
+			if(a.getFill() == cop_color) {
+				System.out.println("You're arrested");	
+			}
+			else {
+				System.out.println("+1 Homies");	
+			}
 		}
+			
 	}
 	
 	private void moveCircleRandomly(final Circle cop) {
@@ -114,8 +116,6 @@ public class GameWindow
 	    	default:
 	    		break;
 		}
-  
-		
 	}
 
 	
