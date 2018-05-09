@@ -10,16 +10,13 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.net.URISyntaxException;
 import java.util.Random;
-
-import javafx.animation.PathTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.*;
@@ -29,7 +26,7 @@ import javafx.scene.media.AudioClip;
 
 public class GameWindow
 {
-	private static final int KEYBOARD_MOVEMENT_DELTA = 5;
+	private static final int KEYBOARD_MOVEMENT_DELTA = 10;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	private final Group rootGroup;	
@@ -40,50 +37,67 @@ public class GameWindow
 	public GameWindow(Scene game, Stage primaryStage){
 		rootGroup = new Group();
 		
-		
-		
 		String url = "assets/cobblestone.jpg";
 		Image img = new Image(url);
-		
-		
 		ImagePattern pattern = new ImagePattern(img);
 		game.setFill(pattern);
 		
+		
+		Circle cop = new Circle();
+		Timeline copMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
+
+		    @Override
+		    public void handle(ActionEvent event) {
+		        moveCop(cop);
+		    }
+		}));
+		copMover.setCycleCount(Timeline.INDEFINITE);
+		copMover.play();
+		
+		
+		
 		Circle player = new Circle();
-        Polygon police = new Polygon();
-        police.getPoints().addAll(new Double[]{
-            0.0, 0.0,
-            20.0, 10.0,
-            10.0, 20.0 });
-        
-        // Random movements
-        PathTransition pt = new PathTransition();
-        pt.setNode(police);
-        pt.setDuration(Duration.seconds(3));
-        pt.setPath(createPath());
-        pt.setCycleCount(PathTransition.INDEFINITE);
-        pt.play();
+     
 			
         player.setCenterX(40);
         player.setCenterY(40);
         player.setRadius(10);
-        rootGroup.getChildren().addAll(player, police);
+        
+        cop.setCenterX(40);
+        cop.setCenterY(40);
+        cop.setRadius(10);
+        rootGroup.getChildren().addAll(player, cop);
         
         moveCircleOnKeyPress(game, player,primaryStage);
         
 	}
 	
-	
-	private Path createPath() {
-        int loc = ran.nextInt(600 - 300 + 1) + 300; // min=300 , max=600
-
-        Path path = new Path();
-
-        path.getElements().add(new MoveTo(20, 20));
-        path.getElements().add(new LineTo(loc, 600));
-
-        return path;
+	private void moveCop(final Circle cop) {
+		int direc = 1;
+		Random rand = new Random();
+		direc = rand.nextInt(4)+1;	
+		
+		switch (direc) {
+	    	case 1:
+	    		if(!(cop.getCenterY() == 0))
+	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); 
+	    		break;
+	    	case 2: 
+	    		if(!(cop.getCenterX() == map_width))
+	    			cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
+	    	case 3: 
+	    		if(!(cop.getCenterY() == map_height))
+	    			cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
+	    	case 4:  
+	    		if(!(cop.getCenterX() == 0))
+	    			cop.setCenterX(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
+	    	default:
+	    		break;
+		}
+  
+		
 	}
+
 	
     
     private void moveCircleOnKeyPress(Scene scene, final Circle circle,Stage primaryStage) {
@@ -161,13 +175,13 @@ public class GameWindow
 	    settings.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(scene);
     		primaryStage.getScene().setRoot(set.getRootGroup());
-    		rootGroup.setEffect(null);;
+    		rootGroup.setEffect(null);
     		popupStage.hide();
     	});
 	    instructions.setOnAction(e -> {
     		InstructionsWindow instruct = new InstructionsWindow(scene);
     		primaryStage.getScene().setRoot(instruct.getRootGroup());
-    		rootGroup.setEffect(null);;
+    		rootGroup.setEffect(null);
     		popupStage.hide();
     	});
 	    pauseRoot.setOnKeyPressed(new EventHandler<KeyEvent>() {
