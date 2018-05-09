@@ -19,72 +19,75 @@ public class SettingsWindow {
 
 	public SettingsWindow(Scene set)
 	{
+		//Upload music and fonts
 		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
 		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 120);
+		
+		//Declarations
 		rootGroup = new Group();
 		t = new Text();
 		t2 = new Text();
 		Button back = new Button("Back To Main Menu");
-		Button mute;
+		Button minus, plus;
 		String url = "assets/blackscreen.png";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		set.setFill(pattern);
-		Image unmute_image, mute_image;
-		ImageView unmute_iv, mute_iv;
-		
-		unmute_image = new Image(getClass().getResourceAsStream("assets/unmute.png"));
-    	unmute_iv = new ImageView(unmute_image);
-    	unmute_iv.setFitHeight(15);
-    	unmute_iv.setFitWidth(15);
+    
+    	minus = new Button("-");
+    	plus = new Button("+");
     	
-    	mute_image = new Image(getClass().getResourceAsStream("assets/mute.png"));
-    	mute_iv = new ImageView(mute_image);
-    	mute_iv.setFitHeight(15);
-    	mute_iv.setFitWidth(15);
-    	
-    	mute = new Button("",unmute_iv);
-    	
-		t.setFont(font);
-		t.setText("Mute:");
-		t.setFill(Color.WHITE);
-		t.setX(30.0);
-		t.setY(300.0);
+    	//Settings Title and Mute Title
 		t2.setFont(font);
 		t2.setText("Settings");
 		t2.setFill(Color.WHITE);
 		t2.setX(320.0);
 		t2.setY(100.0);
+		font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 90);
+		t.setFont(font);
+		t.setText("Volume:");
+		t.setFill(Color.WHITE);
+		t.setX(30.0);
+		t.setY(300.0);
 		
-		mute.setLayoutX(240);
-		mute.setLayoutY(210);
-		mute.setPrefSize(200,100);
+		//Button Positioning and Size
+		minus.setLayoutX(225);
+		minus.setLayoutY(260);
+		minus.setPrefSize(25,25);
+		plus.setLayoutX(260);
+		plus.setLayoutY(260);
+		plus.setPrefSize(25,25);
 		back.setLayoutX(600);
 		back.setLayoutY(500);
 		back.setPrefSize(300, 100);
+		
+		//Mouse Actions for Back Button
 		back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
 		back.setOnMouseEntered(e -> {
         	back.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
         	click_player.play();
         });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
-		rootGroup.getChildren().addAll(back, t, mute, t2);
+		rootGroup.getChildren().addAll(back, t, minus, t2, plus);
 		
+		//Button Actions
 		back.setOnAction(e -> {
 			click2_player.play();
 			//go to StartWindow
 		});  
 			
-		mute.setOnAction(e -> {
-	    	if(muted) {
-	    		StartWindow.mp.play();
-	    		mute.setGraphic(unmute_iv);
-	    		muted = false;
-	    	}else {
-	    		StartWindow.mp.pause();
-	    		mute.setGraphic(mute_iv);
-	    		muted = true;
+		minus.setOnAction(e -> {
+			if(StartWindow.mp.getVolume() > 0)
+			{
+	    		StartWindow.mp.setVolume((StartWindow.mp.getVolume()-0.1));
+	    	}
+	    }); 
+		
+		plus.setOnAction(e -> {
+			if(StartWindow.mp.getVolume() < 1)
+			{
+	    		StartWindow.mp.setVolume((StartWindow.mp.getVolume()+0.1));
 	    	}
 	    }); 
 
