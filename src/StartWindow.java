@@ -67,7 +67,7 @@ public class StartWindow extends Application
     	//Music
     	m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
-	    mp.setVolume(0.35);
+	    mp.setVolume(0.4);
 	    mp.play(); 
 	    muted = false;
    	
