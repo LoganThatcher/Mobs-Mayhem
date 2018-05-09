@@ -18,7 +18,7 @@ public class StartWindow extends Application
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	static final Group root = new Group();
-	MediaPlayer mp;
+	static MediaPlayer mp;
 	boolean muted;	
 	Image unmute_image, mute_image;
 	ImageView unmute_iv, mute_iv;
@@ -46,7 +46,7 @@ public class StartWindow extends Application
 		AudioClip click_player = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
 		AudioClip click2_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
 	    Scene home = new Scene(root, map_width, map_height);
-    	Button startGame, howToPlay, settings, mute, instructions;
+    	Button startGame, howToPlay, settings;
     	Text t;
     	Media m;
     	Image img;
@@ -68,7 +68,7 @@ public class StartWindow extends Application
     	//instructions = new Button("Instructions");
     	
     	
-    	//Mute and Unmute images
+    	/*//Mute and Unmute images
     	unmute_image = new Image(getClass().getResourceAsStream("assets/unmute.png"));
     	unmute_iv = new ImageView(unmute_image);
     	unmute_iv.setFitHeight(15);
@@ -79,7 +79,7 @@ public class StartWindow extends Application
     	mute_iv.setFitHeight(15);
     	mute_iv.setFitWidth(15);
     	
-    	mute = new Button("",unmute_iv);
+    	mute = new Button("",unmute_iv);*/
     	
 
     	//Music
@@ -140,7 +140,7 @@ public class StartWindow extends Application
         howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
         
         
-        root.getChildren().addAll(startGame, howToPlay, settings, t, mute);
+        root.getChildren().addAll(startGame, howToPlay, settings, t);
         stage.show();
         
         
@@ -165,7 +165,7 @@ public class StartWindow extends Application
     	});
 
     	
-    	mute.setOnAction(e -> {
+    	/*mute.setOnAction(e -> {
     		if(muted) {
     			mp.play();
     			mute.setGraphic(unmute_iv);
@@ -175,7 +175,7 @@ public class StartWindow extends Application
     			mute.setGraphic(mute_iv);
     			muted = true;
     		}
-    	}); 
+    	}); */
     	
     }
    
