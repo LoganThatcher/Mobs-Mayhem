@@ -7,11 +7,19 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.net.URISyntaxException;
+import java.util.Random;
+
+import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.*;
@@ -26,6 +34,8 @@ public class GameWindow
 	private static final int map_width = 900;
 	private final Group rootGroup;	
 	AudioClip click_player;
+	
+	Random ran = new Random();
 
 	public GameWindow(Scene game, Stage primaryStage){
 		rootGroup = new Group();
@@ -40,16 +50,40 @@ public class GameWindow
 		game.setFill(pattern);
 		
 		Circle player = new Circle();
-    	
+        Polygon police = new Polygon();
+        police.getPoints().addAll(new Double[]{
+            0.0, 0.0,
+            20.0, 10.0,
+            10.0, 20.0 });
+        
+        // Random movements
+        PathTransition pt = new PathTransition();
+        pt.setNode(police);
+        pt.setDuration(Duration.seconds(3));
+        pt.setPath(createPath());
+        pt.setCycleCount(PathTransition.INDEFINITE);
+        pt.play();
+			
         player.setCenterX(40);
         player.setCenterY(40);
         player.setRadius(10);
-        rootGroup.getChildren().add(player);
+        rootGroup.getChildren().addAll(player, police);
         
         moveCircleOnKeyPress(game, player,primaryStage);
         
 	}
+	
+	
+	private Path createPath() {
+        int loc = ran.nextInt(600 - 300 + 1) + 300; // min=300 , max=600
 
+        Path path = new Path();
+
+        path.getElements().add(new MoveTo(20, 20));
+        path.getElements().add(new LineTo(loc, 600));
+
+        return path;
+	}
 	
     
     private void moveCircleOnKeyPress(Scene scene, final Circle circle,Stage primaryStage) {
