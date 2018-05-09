@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 public class SettingsWindow {
 
 	private final Group rootGroup;
-	private final Text t;
+	private final Text t, t2;
 	boolean muted;
 
 	public SettingsWindow(Scene set)
@@ -24,6 +24,7 @@ public class SettingsWindow {
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 120);
 		rootGroup = new Group();
 		t = new Text();
+		t2 = new Text();
 		Button back = new Button("Back To Main Menu");
 		Button mute;
 		String url = "assets/blackscreen.png";
@@ -50,6 +51,12 @@ public class SettingsWindow {
 		t.setFill(Color.WHITE);
 		t.setX(30.0);
 		t.setY(300.0);
+		t2.setFont(font);
+		t2.setText("Settings");
+		t2.setFill(Color.WHITE);
+		t2.setX(320.0);
+		t2.setY(100.0);
+		
 		mute.setLayoutX(240);
 		mute.setLayoutY(210);
 		mute.setPrefSize(200,100);
@@ -62,7 +69,7 @@ public class SettingsWindow {
         	click_player.play();
         });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
-		rootGroup.getChildren().addAll(back, t, mute);
+		rootGroup.getChildren().addAll(back, t, mute, t2);
 		
 		back.setOnAction(e -> {
 			click2_player.play();
