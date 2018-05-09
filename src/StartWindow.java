@@ -27,8 +27,7 @@ public class StartWindow extends Application
     {
         launch(args);
     }
-	
-	
+		
 	@Override
     public void start(Stage stage) throws Exception
     {	
@@ -51,8 +50,7 @@ public class StartWindow extends Application
     	Media m;
     	Image img;
     	ImagePattern pattern;
-
-    	
+ 	
     	//Main Title
     	t = new Text(225,160,"Mob Mayhem");
     	t.setFont(font);
@@ -65,31 +63,15 @@ public class StartWindow extends Application
     	howToPlay.setFont(font);
     	settings = new Button("Settings");
     	settings.setFont(font);
-    	//instructions = new Button("Instructions");
     	
-    	
-    	/*//Mute and Unmute images
-    	unmute_image = new Image(getClass().getResourceAsStream("assets/unmute.png"));
-    	unmute_iv = new ImageView(unmute_image);
-    	unmute_iv.setFitHeight(15);
-    	unmute_iv.setFitWidth(15);
-    	
-    	mute_image = new Image(getClass().getResourceAsStream("assets/mute.png"));
-    	mute_iv = new ImageView(mute_image);
-    	mute_iv.setFitHeight(15);
-    	mute_iv.setFitWidth(15);
-    	
-    	mute = new Button("",unmute_iv);*/
-    	
-
     	//Music
     	m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
 	    mp = new MediaPlayer(m);
 	    mp.setVolume(0.35);
 	    mp.play(); 
 	    muted = false;
-
    	
+	    //Background Image
 		img = new Image("assets/start_screen.jpg");
 		
 		pattern = new ImagePattern(img);
@@ -97,27 +79,19 @@ public class StartWindow extends Application
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
         
+        //Button Positioning and Sizing
         howToPlay.setLayoutX(250);
         howToPlay.setLayoutY(400);
         settings.setLayoutX(375);
         settings.setLayoutY(400);
-        //instructions.setLayoutX(450);
-        //instructions.setLayoutY(400);
         startGame.setLayoutX(500);
         startGame.setLayoutY(400);
         
         startGame.setPrefSize(150, 100);
         howToPlay.setPrefSize(150, 100);
         settings.setPrefSize(150, 100);
-        //instructions.setPrefSize(150, 100);
         
-        
-        /*instructions.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-        instructions.setOnMouseEntered(e -> {
-        	instructions.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
-        });
-        settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));*/
+        //Mouse on Button Actions
         settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         settings.setOnMouseEntered(e -> {
         	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
@@ -144,6 +118,7 @@ public class StartWindow extends Application
         stage.show();
         
         
+        //Button Actions
     	startGame.setOnAction(e -> {
     		
     		LoadWindow load = new LoadWindow(home,stage);
@@ -163,19 +138,6 @@ public class StartWindow extends Application
     		stage.getScene().setRoot(instruct.getRootGroup());
     		click2_player.play();
     	});
-
-    	
-    	/*mute.setOnAction(e -> {
-    		if(muted) {
-    			mp.play();
-    			mute.setGraphic(unmute_iv);
-    			muted = false;
-    		}else {
-    			mp.pause();
-    			mute.setGraphic(mute_iv);
-    			muted = true;
-    		}
-    	}); */
     	
     }
    
