@@ -44,19 +44,24 @@ public class GameWindow
 		
 		
 		Circle cop = new Circle();
-		Timeline copMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
+		Circle cit = new Circle();
+		Circle player = new Circle();
+		
+		Timeline circMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
 
 		    @Override
 		    public void handle(ActionEvent event) {
-		        moveCop(cop);
+		        moveCircleRandomly(cop);
+		        moveCircleRandomly(cit);
+		        checkCollisions(cop, player);
 		    }
 		}));
-		copMover.setCycleCount(Timeline.INDEFINITE);
-		copMover.play();
+		circMover.setCycleCount(Timeline.INDEFINITE);
+		circMover.play();
 		
 		
 		
-		Circle player = new Circle();
+		
      
 			
         player.setCenterX(40);
@@ -66,13 +71,28 @@ public class GameWindow
         cop.setCenterX(40);
         cop.setCenterY(40);
         cop.setRadius(10);
-        rootGroup.getChildren().addAll(player, cop);
+        cop.setFill(Color.BLUE);
+        
+        cit.setCenterX(40);
+        cit.setCenterY(40);
+        cit.setRadius(10);
+        cit.setFill(Color.ANTIQUEWHITE);
+        
+        rootGroup.getChildren().addAll(player, cop,cit);
         
         moveCircleOnKeyPress(game, player,primaryStage);
         
 	}
+
+	private void checkCollisions(Circle a, Circle b) {
+		if((a.getCenterY()-b.getCenterY() < 10) && 
+				(a.getCenterX()-b.getCenterX() < 10) ) {
+			System.out.println("You're arrested");
+			
+		}
+	}
 	
-	private void moveCop(final Circle cop) {
+	private void moveCircleRandomly(final Circle cop) {
 		int direc = 1;
 		Random rand = new Random();
 		direc = rand.nextInt(4)+1;	
