@@ -28,7 +28,7 @@ public class SettingsWindow {
 
 	public SettingsWindow(Scene set)
 	{
-
+		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 100);
 		rootGroup = new Group();
 		t = new Text();
 		Button back = new Button("Back To Main Menu");
@@ -37,7 +37,7 @@ public class SettingsWindow {
 		ImagePattern pattern = new ImagePattern(img);
 		set.setFill(pattern);
 		
-	    t.setFont(Font.font("Verdana", 50));
+	    t.setFont(font);
 		t.setText("LOL you have no settings options");
 		t.setFill(Color.WHITE);
 		t.setX(30.0);
