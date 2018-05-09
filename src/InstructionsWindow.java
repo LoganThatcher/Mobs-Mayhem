@@ -27,6 +27,7 @@ public class InstructionsWindow {
 	private final Text t;
 	
 	public InstructionsWindow(Scene instructions) {
+		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 100);	
 		rootGroup = new Group();
 		t = new Text();
 		Button back = new Button("Back To Main Menu");
@@ -35,7 +36,7 @@ public class InstructionsWindow {
 		ImagePattern pattern = new ImagePattern(img);
 		instructions.setFill(pattern);
 		
-	    t.setFont(Font.font("Verdana", 50));
+	    t.setFont(font);
 		t.setText("Instructions coming soooooon!");
 		t.setFill(Color.WHITE);
 		t.setX(30.0);
