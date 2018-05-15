@@ -1,4 +1,5 @@
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern; 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class InstructionsWindow {
 
@@ -26,15 +28,18 @@ public class InstructionsWindow {
 	private final Group rootGroup;
 	private final Text t;
 	
-	public InstructionsWindow(Scene instructions) {
+	public InstructionsWindow(Scene instruct, Stage primaryStage)
+	{
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 100);	
+		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
+		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
 		rootGroup = new Group();
 		t = new Text();
 		Button back = new Button("Back To Main Menu");
 		String url = "assets/blackscreen.png";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
-		instructions.setFill(pattern);
+		instruct.setFill(pattern);
 		
 	    t.setFont(font);
 		t.setText("Instructions coming soooooon!");
@@ -45,12 +50,17 @@ public class InstructionsWindow {
 		back.setLayoutY(500);
 		back.setPrefSize(300, 100);
 		back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-		back.setOnMouseEntered(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px"));
+		back.setOnMouseEntered(e -> {
+        	back.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+        	click_player.play();
+        });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 		rootGroup.getChildren().addAll(back, t);
 		
 		back.setOnAction(e -> {
-			//go to StartWindow
+			click2_player.play();
+			MainMenuWindow main = new MainMenuWindow(instruct, primaryStage);
+			primaryStage.getScene().setRoot(main.getRootGroup());
 		}); 
 	}
 	
