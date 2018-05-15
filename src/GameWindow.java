@@ -193,13 +193,13 @@ public class GameWindow
 	      	popupStage.hide();
 	    });
 	    settings.setOnAction(e -> {
-    		SettingsWindow set = new SettingsWindow(scene);
+    		SettingsWindow set = new SettingsWindow(scene, primaryStage);
     		primaryStage.getScene().setRoot(set.getRootGroup());
     		rootGroup.setEffect(null);
     		popupStage.hide();
     	});
 	    instructions.setOnAction(e -> {
-    		InstructionsWindow instruct = new InstructionsWindow(scene);
+    		InstructionsWindow instruct = new InstructionsWindow(scene, primaryStage);
     		primaryStage.getScene().setRoot(instruct.getRootGroup());
     		rootGroup.setEffect(null);
     		popupStage.hide();
