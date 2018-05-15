@@ -107,7 +107,7 @@ public class MainMenuWindow {
 		});
 
 		howToPlay.setOnAction( e -> {
-			InstructionsWindow instruct = new InstructionsWindow(main);
+			InstructionsWindow instruct = new InstructionsWindow(main, primaryStage);
 			primaryStage.getScene().setRoot(instruct.getRootGroup());
 			click2_player.play();
 		});
