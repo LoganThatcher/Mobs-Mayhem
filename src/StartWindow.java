@@ -126,7 +126,7 @@ public class StartWindow extends Application
 		    	});
 
 		    	howToPlay.setOnAction( e -> {
-		    		InstructionsWindow instruct = new InstructionsWindow(home);
+		    		InstructionsWindow instruct = new InstructionsWindow(home, stage);
 		    		stage.getScene().setRoot(instruct.getRootGroup());
 		    		click2_player.play();
 		    	});
