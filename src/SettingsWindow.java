@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class SettingsWindow {
 
@@ -17,7 +18,7 @@ public class SettingsWindow {
 	private final Text t, t2;
 	boolean muted;
 
-	public SettingsWindow(Scene set)
+	public SettingsWindow(Scene set, Stage primaryStage)
 	{
 		//Upload music and fonts
 		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
@@ -74,7 +75,8 @@ public class SettingsWindow {
 		//Button Actions
 		back.setOnAction(e -> {
 			click2_player.play();
-			//go to StartWindow
+			MainMenuWindow main = new MainMenuWindow(set, primaryStage);
+			primaryStage.getScene().setRoot(main.getRootGroup());
 		});  
 			
 		minus.setOnAction(e -> {
