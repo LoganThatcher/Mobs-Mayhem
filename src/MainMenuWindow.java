@@ -49,45 +49,45 @@ public class MainMenuWindow {
 		//Buttons
 		startGame = new Button("Start Game");
 	    startGame.setFont(font);
-				    	howToPlay = new Button("How To Play");
-				    	howToPlay.setFont(font);
-				    	settings = new Button("Settings");
-				    	settings.setFont(font);
+	    howToPlay = new Button("How To Play");
+		howToPlay.setFont(font);
+		settings = new Button("Settings");
+		settings.setFont(font);
 				    	
 				        
-				        //Button Positioning and Sizing
-				        howToPlay.setLayoutX(250);
-				        howToPlay.setLayoutY(400);
-				        settings.setLayoutX(375);
-				        settings.setLayoutY(400);
-				        startGame.setLayoutX(500);
-				        startGame.setLayoutY(400);
+		//Button Positioning and Sizing
+		howToPlay.setLayoutX(250);
+		howToPlay.setLayoutY(400);
+		settings.setLayoutX(375);
+		settings.setLayoutY(400);
+		startGame.setLayoutX(500);
+		startGame.setLayoutY(400);
 				        
-				        startGame.setPrefSize(150, 100);
-				        howToPlay.setPrefSize(150, 100);
-				        settings.setPrefSize(150, 100);
+		startGame.setPrefSize(150, 100);
+		howToPlay.setPrefSize(150, 100);
+		settings.setPrefSize(150, 100);
 				        
-				        //Mouse on Button Actions
-				        settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-				        settings.setOnMouseEntered(e -> {
-				        	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-				        	click_player.play();
-				        });
-				        settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		//Mouse on Button Actions
+		settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		settings.setOnMouseEntered(e -> {
+			settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+			click_player.play();
+		});
+		settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 				        
-				        startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-				        startGame.setOnMouseEntered(e -> {
-				        	startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-				        	click_player.play();
-				        });
-				        startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		startGame.setOnMouseEntered(e -> {
+			startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+			click_player.play();
+		});
+		startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 				        
-				        howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
-				        howToPlay.setOnMouseEntered(e -> {
-				        	howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-				        	click_player.play();
-				        });
-				        howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		howToPlay.setOnMouseEntered(e -> {
+			howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+			click_player.play();
+		});
+		howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 				        
 				        
 	    rootGroup.getChildren().addAll(startGame, howToPlay, settings, t);
