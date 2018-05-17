@@ -34,7 +34,10 @@ public class GameWindow
 	private static final Color player_color = Color.BLACK;
 	private static final Color cit_color = Color.ANTIQUEWHITE;
 	private final Group rootGroup;	
+	private int mobSize;
+	private int lives;
 	AudioClip click_player;
+	Text life_counter;
 	
 	Random ran = new Random();
 
@@ -46,6 +49,12 @@ public class GameWindow
 		Circle cop = new Circle();
 		Circle cit = new Circle();
 		Circle player = new Circle();
+		
+		
+		mobSize = 10;
+		lives = 3;
+		life_counter = new Text(10,20,"Lives: " + Integer.toString(lives));
+		life_counter.setFill(Color.RED);
 		
 		game.setFill(pattern);
 		rootGroup = new Group();
@@ -102,7 +111,7 @@ public class GameWindow
         cit.setRadius(10);
         cit.setFill(cit_color);
         
-        rootGroup.getChildren().addAll(player, cop,cit);
+        rootGroup.getChildren().addAll(player, cop,cit, life_counter);
         moveCircleOnKeyPress(game, player,primaryStage);
 	}
 
@@ -110,9 +119,24 @@ public class GameWindow
 		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
 			if(a.getFill() == cop_color) {
 				System.out.println("You're arrested");	
+				if(lives == 1) {
+					System.out.println("Game over, death sentence yo");
+				}
+				lives -= 1;
+				life_counter.setText("Lives: " + Integer.toString(lives));
+				b.setRadius(10);
+				b.setCenterX(map_width/2);
+		        b.setCenterY(map_height/2);
+				
 			}
 			else {
-				System.out.println("+1 Homies");	
+				System.out.println("+1 Homies");
+				a.setRadius(0);
+				rootGroup.getChildren().remove(a);
+				mobSize += 1;
+				b.setRadius(mobSize);
+				
+				
 			}
 		}
 			
