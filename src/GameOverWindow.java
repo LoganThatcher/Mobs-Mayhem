@@ -160,7 +160,7 @@ public class GameOverWindow extends Application {
     	});
     	
     	highScores.setOnAction(e -> {
-    		SettingsWindow set = new SettingsWindow(home);
+    		SettingsWindow set = new SettingsWindow(home, stage);
     		stage.getScene().setRoot(set.getRootGroup());
     		click2_player.play();
     	});
