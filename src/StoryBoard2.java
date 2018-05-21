@@ -27,7 +27,7 @@ public class StoryBoard2 {
 	            @Override
 	            protected Void call() throws Exception {
 	                try {
-	                    Thread.sleep(3000);
+	                    Thread.sleep(5000);
 	                } catch (InterruptedException e) {
 	                }
 	                return null;
