@@ -27,7 +27,7 @@ import javafx.scene.media.AudioClip;
 
 public class GameWindow
 {
-	private static final int KEYBOARD_MOVEMENT_DELTA = 10;
+	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
 	private static final Color cop_color = Color.BLUE;
@@ -53,7 +53,7 @@ public class GameWindow
 		
 		mobSize = 10;
 		lives = 3;
-		life_counter = new Text(10,20,"Lives: " + Integer.toString(lives));
+		life_counter = new Text(10,20,"Lives: " + lives);
 		life_counter.setFill(Color.RED);
 		
 		game.setFill(pattern);
@@ -82,10 +82,10 @@ public class GameWindow
       
       rootGroup.getChildren().add(grid);
 			
-		circMover = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
+		circMover = new Timeline(new KeyFrame(Duration.millis(300), new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
-		        moveCircleRandomly(cop);
+		        moveCircleTowardPlayer(cop,player);
 		        moveCircleRandomly(cit);
 		        checkCollisions(cop, player);
 		        checkCollisions(cit,player);
@@ -123,20 +123,18 @@ public class GameWindow
 					System.out.println("Game over, death sentence yo");
 				}
 				lives -= 1;
-				life_counter.setText("Lives: " + Integer.toString(lives));
+				life_counter.setText("Lives: " + lives);
 				b.setRadius(10);
 				b.setCenterX(map_width/2);
 		        b.setCenterY(map_height/2);
 				
 			}
-			else {
+			else{
 				System.out.println("+1 Homies");
 				a.setRadius(0);
 				rootGroup.getChildren().remove(a);
 				mobSize += 1;
 				b.setRadius(mobSize);
-				
-				
 			}
 		}
 			
@@ -166,7 +164,29 @@ public class GameWindow
 		}
 	}
 
-	
+	private void moveCircleTowardPlayer(final Circle cop,final Circle player) {
+		double player_x = player.getCenterX();
+		double player_y = player.getCenterY();
+		double cop_x = cop.getCenterX();
+		double cop_y = cop.getCenterY();
+		
+		if(Math.abs(player_x - cop_x) > Math.abs(player_y - cop_y)){
+			//Move horizontally
+			if(player_x > cop_x) {
+				cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA);
+			}else {
+				cop.setCenterX(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA);
+			}
+		}
+		else {
+			//Move vertically
+			if(player_y > cop_y) {
+				cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA);
+			}else {
+				cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA);
+			}
+		}
+	}
     
     private void moveCircleOnKeyPress(Scene scene, final Circle circle,Stage primaryStage) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
