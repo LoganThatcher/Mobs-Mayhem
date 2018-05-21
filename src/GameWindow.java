@@ -263,15 +263,23 @@ public class GameWindow
 	    settings.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(scene, primaryStage);
     		primaryStage.getScene().setRoot(set.getRootGroup());
-    		rootGroup.setEffect(null);
     		popupStage.hide();
     	});
 	    instructions.setOnAction(e -> {
     		InstructionsWindow instruct = new InstructionsWindow(scene, primaryStage);
     		primaryStage.getScene().setRoot(instruct.getRootGroup());
-    		rootGroup.setEffect(null);
     		popupStage.hide();
     	});
+	    quit.setOnAction(e -> {
+			MainMenuWindow main = new MainMenuWindow(scene, primaryStage);
+			primaryStage.getScene().setRoot(main.getRootGroup());
+			popupStage.hide();
+		});  
+	    restart.setOnAction(e -> {
+			LoadWindow load = new LoadWindow(scene, primaryStage);
+			primaryStage.getScene().setRoot(load.getRootGroup());
+			popupStage.hide();
+		});  
 	    pauseRoot.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	          @Override public void handle(KeyEvent event) {
 	            switch (event.getCode()) {
