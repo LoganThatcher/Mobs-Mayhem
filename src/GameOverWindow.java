@@ -46,7 +46,7 @@ public class GameOverWindow extends Application {
 		AudioClip click_player = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
 		AudioClip click2_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
 	    Scene home = new Scene(root, map_width, map_height);
-    	Button newGame, highScores;
+    	Button newGame, highScores, menu;
     	Text t;
     	Text G;
     	Text E;
@@ -78,6 +78,8 @@ public class GameOverWindow extends Application {
     	newGame.setFont(font);
     	highScores = new Button("High Scores");
     	highScores.setFont(font);
+    	menu = new Button("Return Menu");
+    	menu.setFont(font);
     	
     	//instructions = new Button("Instructions");
     	
@@ -104,23 +106,27 @@ public class GameOverWindow extends Application {
 	    muted = false;
 
    	
-		img = new Image("assets/start_screen.jpg");
+		img = new Image("assets/blackscreen.png");
 		
 		pattern = new ImagePattern(img);
 		home.setFill(pattern);
     	stage.setScene(home);
         stage.setTitle("Mobs & Mayhem");
         
-        newGame.setLayoutX(250);
-        newGame.setLayoutY(400);
-        highScores.setLayoutX(375);
-        highScores.setLayoutY(400);
+        newGame.setLayoutX(215);
+        newGame.setLayoutY(450);
+        highScores.setLayoutX(360);
+        highScores.setLayoutY(450);
+        menu.setLayoutX(515);
+        menu.setLayoutY(450);
+        
         //instructions.setLayoutX(450);
         //instructions.setLayoutY(400);
         
         
         newGame.setPrefSize(150, 100);
-       highScores.setPrefSize(150, 100);
+        highScores.setPrefSize(150, 100);
+        menu.setPrefSize(150, 100);
         
         //instructions.setPrefSize(150, 100);
         
@@ -131,12 +137,15 @@ public class GameOverWindow extends Application {
         	click_player.play();
         });
         settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));*/
+        
         newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         newGame.setOnMouseEntered(e -> {
         	newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
         	click_player.play();
         });
         newGame.setOnMouseExited(e -> newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        
+        
         
         highScores.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
         highScores.setOnMouseEntered(e -> {
@@ -147,7 +156,15 @@ public class GameOverWindow extends Application {
         
         
         
-        root.getChildren().addAll(newGame, highScores, t, G, E);
+        menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		menu.setOnMouseEntered(e -> {
+			menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
+			click_player.play();
+		});
+		menu.setOnMouseExited(e -> menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+				        
+			
+        root.getChildren().addAll(newGame, highScores, menu, t, G, E);
         stage.show();
         
         
@@ -162,6 +179,12 @@ public class GameOverWindow extends Application {
     	highScores.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(home, stage);
     		stage.getScene().setRoot(set.getRootGroup());
+    		click2_player.play();
+    	});
+    	
+    	menu.setOnAction(e -> {
+    		MainMenuWindow main = new MainMenuWindow(home, stage);
+    		stage.getScene().setRoot(main.getRootGroup());
     		click2_player.play();
     	});
 
