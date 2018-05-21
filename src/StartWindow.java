@@ -113,8 +113,8 @@ public class StartWindow extends Application
 		        //Button Actions
 		    	startGame.setOnAction(e -> {
 		    		
-		    		LoadWindow load = new LoadWindow(home,stage);
-		    		stage.getScene().setRoot(load.getRootGroup());
+		    		StoryBoard1 sb1 = new StoryBoard1(home,stage);
+		    		stage.getScene().setRoot(sb1.getRootGroup());
 		    		click2_player.play();
 		    		
 		    	});
