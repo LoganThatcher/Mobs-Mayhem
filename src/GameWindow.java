@@ -36,8 +36,10 @@ public class GameWindow
 	private final Group rootGroup;	
 	private int mobSize;
 	private int lives;
+	private int score;
 	AudioClip click_player;
 	Text life_counter;
+	Text score_counter;
 	
 	Random ran = new Random();
 
@@ -55,6 +57,9 @@ public class GameWindow
 		lives = 3;
 		life_counter = new Text(10,20,"Lives: " + lives);
 		life_counter.setFill(Color.RED);
+		score = 0;
+		score_counter = new Text(830,20,"Score: " + score);
+		score_counter.setFill(Color.RED);
 		
 		game.setFill(pattern);
 		rootGroup = new Group();
@@ -111,7 +116,7 @@ public class GameWindow
         cit.setRadius(10);
         cit.setFill(cit_color);
         
-        rootGroup.getChildren().addAll(player, cop,cit, life_counter);
+        rootGroup.getChildren().addAll(player, cop,cit, life_counter, score_counter);
         moveCircleOnKeyPress(game, player,primaryStage);
 	}
 
@@ -134,6 +139,8 @@ public class GameWindow
 				a.setRadius(0);
 				rootGroup.getChildren().remove(a);
 				mobSize += 1;
+				score += 10;
+				score_counter.setText("Score: " + score);
 				b.setRadius(mobSize);
 			}
 		}
@@ -293,9 +300,7 @@ public class GameWindow
 	          }
 	    });
 	      
-	    popupStage.show();
-	
-    
+	    popupStage.show();    
     }
     
     public Group getRootGroup() {
