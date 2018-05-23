@@ -1,5 +1,6 @@
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
@@ -18,16 +19,25 @@ public class LoadWindow
 {
 	private final Group rootGroup;	
 	int i = 0;
+	double end_line = 25;
     
 	public LoadWindow(Scene game, Stage primaryStage){
-		rootGroup = new Group();
-
-		
+				
 		String url = "assets/blackscreen.png";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
 		Text t, progress, tip;
+		Line l;
+		
+		rootGroup = new Group();
+		
+		l = new Line(25,535, end_line, 535);
+		l.setStroke(Color.RED);
+		l.setStrokeWidth(5);
+		
+		
+		
 		t = new Text(30,565,"Loading");
     	t.setFont(font);
     	t.setFill(Color.WHITE);
@@ -52,7 +62,9 @@ public class LoadWindow
 		    @Override
 		    public void handle(ActionEvent event) {
 		       progress.setText(Integer.toString(i));
+		       l.setEndX(end_line);
 		       i++;
+		       end_line += 2.65;
 		    }
 		}));
 		loading.setCycleCount(101);
@@ -83,7 +95,7 @@ public class LoadWindow
         new Thread(sleeper).start();
         
         
-        rootGroup.getChildren().addAll(t,progress,tip);
+        rootGroup.getChildren().addAll(t,progress,tip,l);
 		
 		
 	
