@@ -64,28 +64,28 @@ public class GameWindow
 		game.setFill(pattern);
 		rootGroup = new Group();
 
-      //Background
-      GridPane grid = new GridPane();
-      grid.setAlignment(Pos.TOP_LEFT);
-      grid.setHgap(25);
-      grid.setVgap(25);
-      grid.setPadding(new Insets(25, 25, 25, 25));
-      
-      
-      String roofurl = "assets/halloween-house.png";
-      Image roofimg = new Image(roofurl);
-      ImageView roof;
-      
-      for (int i = 0; i < 5; i++) {
-         for (int j = 0; j < 8; j++) {
-            roof = new ImageView(roofimg);
-            roof.setFitHeight(90);
-            roof.setFitWidth(85);
-            grid.add(roof, j, i);
-         }
-      }
-      
-      rootGroup.getChildren().add(grid);
+	    //Background
+	    GridPane grid = new GridPane();
+	    grid.setAlignment(Pos.TOP_LEFT);
+	    grid.setHgap(25);
+	    grid.setVgap(25);
+	    grid.setPadding(new Insets(25, 25, 25, 25));
+	      
+	      
+	    String roofurl = "assets/halloween-house.png";
+	    Image roofimg = new Image(roofurl);
+	    ImageView roof;
+	      
+	    for (int i = 0; i < 5; i++) {
+	       for (int j = 0; j < 8; j++) {
+	          roof = new ImageView(roofimg);
+	          roof.setFitHeight(90);
+	          roof.setFitWidth(85);
+	          grid.add(roof, j, i);
+	       }
+	    }
+	      
+	    rootGroup.getChildren().add(grid);
 			
 		circMover = new Timeline(new KeyFrame(Duration.millis(300), new EventHandler<ActionEvent>() {
 		    @Override
@@ -214,6 +214,13 @@ public class GameWindow
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
             		pause(primaryStage, scene);
+            	case SPACE: 
+            		Circle money = new Circle();
+            		money.setCenterY(circle.getCenterY());
+            	    money.setCenterX(circle.getCenterX());
+            	    money.setRadius(5);
+            	    money.setFill(Color.GREEN);
+            	    rootGroup.getChildren().add(money);
             	default:
             		break;
           
@@ -221,6 +228,7 @@ public class GameWindow
           }
         });
       }
+
     
     private void pause(Stage primaryStage, Scene scene){
     
