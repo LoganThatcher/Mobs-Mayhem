@@ -14,6 +14,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -33,6 +35,8 @@ public class GameWindow
 	private static final Color cop_color = Color.BLUE;
 	private static final Color player_color = Color.BLACK;
 	private static final Color cit_color = Color.ANTIQUEWHITE;
+	ArrayList<Circle> moneys = new ArrayList<Circle>();
+	Iterator<Circle> iter = moneys.iterator();
 	private final Group rootGroup;	
 	private int mobSize;
 	private int lives;
@@ -48,6 +52,7 @@ public class GameWindow
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		Timeline circMover;
+		
 		Circle cop = new Circle();
 		Circle cit = new Circle();
 		Circle player = new Circle();
@@ -94,6 +99,11 @@ public class GameWindow
 		        moveCircleRandomly(cit);
 		        checkCollisions(cop, player);
 		        checkCollisions(cit,player);
+		        
+		        if(!moneys.isEmpty()) {
+		        	Circle curr_money = moneys.get(0);
+		        	checkCollisions(curr_money,cop);
+		        }
 		    }
 		}));
 		circMover.setCycleCount(Timeline.INDEFINITE);
@@ -133,6 +143,10 @@ public class GameWindow
 				b.setCenterX(map_width/2);
 		        b.setCenterY(map_height/2);
 				
+			}
+			else if(a.getFill() == Color.GREEN) {
+				a.setFill(Color.TRANSPARENT);
+				moneys.remove(a);
 			}
 			else{
 				System.out.println("+1 Homies");
@@ -177,6 +191,11 @@ public class GameWindow
 		double cop_x = cop.getCenterX();
 		double cop_y = cop.getCenterY();
 		
+		if(!moneys.isEmpty()){
+			player_x = moneys.get(0).getCenterX();
+			player_y = moneys.get(0).getCenterY();
+		}
+		
 		if(Math.abs(player_x - cop_x) > Math.abs(player_y - cop_y)){
 			//Move horizontally
 			if(player_x > cop_x) {
@@ -215,12 +234,17 @@ public class GameWindow
             	case ESCAPE: 
             		pause(primaryStage, scene);
             	case SPACE: 
-            		Circle money = new Circle();
-            		money.setCenterY(circle.getCenterY());
-            	    money.setCenterX(circle.getCenterX());
-            	    money.setRadius(5);
-            	    money.setFill(Color.GREEN);
-            	    rootGroup.getChildren().add(money);
+            		if(score >= 10) {
+            			score = score - 10;
+	            		Circle money = new Circle();
+	            		money.setCenterY(circle.getCenterY());
+	            	    money.setCenterX(circle.getCenterX());
+	            	    money.setRadius(5);
+	            	    money.setFill(Color.GREEN);
+	            	    rootGroup.getChildren().add(money);
+	            	    moneys.add(money);
+            		}
+            	    break;
             	default:
             		break;
           
