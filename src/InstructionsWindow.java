@@ -30,9 +30,12 @@ public class InstructionsWindow {
 	
 	public InstructionsWindow(Scene instruct, Stage primaryStage)
 	{
+		// Upload music and fonts
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 100);	
 		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
 		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
+		
+		// Declarations
 		rootGroup = new Group();
 		t = new Text();
 		Button back = new Button("Back To Main Menu");
@@ -41,11 +44,23 @@ public class InstructionsWindow {
 		ImagePattern pattern = new ImagePattern(img);
 		instruct.setFill(pattern);
 		
+		// Placeholder images and text for the actual instructions!
+		String screenshotUrl = "assets/testimage.jpg";
+		Image screenshot = new Image(screenshotUrl);
+		ImageView imageView = new ImageView(screenshot);
+		imageView.setX(225);
+		imageView.setY(150);
+		imageView.setFitHeight(350);
+		imageView.setPreserveRatio(true);
+		
+		// Setting Title
 	    t.setFont(font);
-		t.setText("Instructions coming soooooon!");
+		t.setText("Instructions");
 		t.setFill(Color.WHITE);
-		t.setX(30.0);
-		t.setY(300.0);
+		t.setX(320.0);
+		t.setY(100.0);
+		
+		// Back Button
 		back.setLayoutX(600);
 		back.setLayoutY(500);
 		back.setPrefSize(300, 100);
@@ -55,7 +70,7 @@ public class InstructionsWindow {
         	click_player.play();
         });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
-		rootGroup.getChildren().addAll(back, t);
+		rootGroup.getChildren().addAll(back, t, imageView);
 		
 		back.setOnAction(e -> {
 			click2_player.play();
@@ -69,8 +84,6 @@ public class InstructionsWindow {
 	}
 	
 }
-
-
 
 
 
