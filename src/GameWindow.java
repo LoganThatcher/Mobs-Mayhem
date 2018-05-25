@@ -238,6 +238,7 @@ public class GameWindow
             	case SPACE: 
             		if(score >= 10) {
             			score = score - 10;
+            			score_counter.setText("Score: " + Integer.toString(score));
 	            		Circle money = new Circle();
 	            		money.setCenterY(circle.getCenterY());
 	            	    money.setCenterX(circle.getCenterX());
