@@ -97,12 +97,12 @@ public class GameWindow
 		    public void handle(ActionEvent event) {
 		        moveCircleTowardPlayer(cop,player);
 		        moveCircleRandomly(cit);
-		        checkCollisions(cop, player);
-		        checkCollisions(cit,player);
+		        checkCollisions(cop, player, game, primaryStage);
+		        checkCollisions(cit,player, game, primaryStage);
 		        
 		        if(!moneys.isEmpty()) {
 		        	Circle curr_money = moneys.get(0);
-		        	checkCollisions(curr_money,cop);
+		        	checkCollisions(curr_money,cop, game, primaryStage);
 		        }
 		    }
 		}));
@@ -130,12 +130,14 @@ public class GameWindow
         moveCircleOnKeyPress(game, player,primaryStage);
 	}
 
-	private void checkCollisions(Circle a, Circle b) {
+	private void checkCollisions(Circle a, Circle b, Scene game, Stage primaryStage) {
 		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
 			if(a.getFill() == cop_color) {
 				System.out.println("You're arrested");	
 				if(lives == 1) {
 					System.out.println("Game over, death sentence yo");
+					GameOverWindow go = new GameOverWindow(game,primaryStage);
+		    		primaryStage.getScene().setRoot(go.getRootGroup());
 				}
 				lives -= 1;
 				life_counter.setText("Lives: " + lives);
