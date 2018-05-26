@@ -38,7 +38,7 @@ public class GameWindow
 	ArrayList<Circle> moneys = new ArrayList<Circle>();
 	Iterator<Circle> iter = moneys.iterator();
 	private final Group rootGroup;	
-	private int mobSize;
+	//private int mobSize;
 	private int lives;
 	private int score;
 	AudioClip click_player;
@@ -57,7 +57,7 @@ public class GameWindow
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
-		mobSize = 10;
+		//mobSize = 10;
 		lives = 3;
 		life_counter = new Text(10,20,"Lives: " + lives);
 		life_counter.setFill(Color.RED);
@@ -100,17 +100,16 @@ public class GameWindow
 		        
 		        if(!moneys.isEmpty()) {
 		        	Circle curr_money = moneys.get(0);
-		        	checkCollisions(curr_money,cop, game, primaryStage);
+		        	checkCollisions(curr_money, cop, game, primaryStage);
 		        }
 		    }
 		}));
 		circMover.setCycleCount(Timeline.INDEFINITE);
 		circMover.play();
-
 		
 		// Character placements and settings
 		Random rand = new Random();
-		int pos = rand.nextInt(map_width)+1;
+		int pos = rand.nextInt(map_width);
         player.setCenterX(map_width/2);
         player.setCenterY(map_height/2);
         player.setRadius(10);
@@ -122,7 +121,7 @@ public class GameWindow
         cop.setFill(cop_color);
         
         cit.setCenterX(pos);
-        pos = rand.nextInt(map_height)+1;
+        pos = rand.nextInt(map_height);
         cit.setCenterY(pos);
         cit.setRadius(10);
         cit.setFill(cit_color);
@@ -134,9 +133,9 @@ public class GameWindow
 	private void checkCollisions(Circle a, Circle b, Scene game, Stage primaryStage) {
 		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
 			if(a.getFill() == cop_color) {
-				System.out.println("You're arrested");	
+				//System.out.println("You're arrested");	
 				if(lives == 1) {
-					System.out.println("Game over, death sentence yo");
+					//System.out.println("Game over, death sentence yo");
 					GameOverWindow go = new GameOverWindow(game,primaryStage);
 		    		primaryStage.getScene().setRoot(go.getRootGroup());
 				}
@@ -152,21 +151,21 @@ public class GameWindow
 				moneys.remove(a);
 			}
 			else{
-				System.out.println("+1 Homies");
+				//System.out.println("+1 Homies");
 				a.setRadius(0);
 				rootGroup.getChildren().remove(a);
-				mobSize += 1;
+				//mobSize += 1;
 				score += 10;
 				score_counter.setText("Score: " + score);
 				Random rand = new Random();
-				int pos = rand.nextInt(map_width)+1;
+				int pos = rand.nextInt(map_width);
 				a.setCenterX(pos);
-		        pos = rand.nextInt(map_height)+1;
+		        pos = rand.nextInt(map_height);
 		        a.setCenterY(pos);
 		        a.setRadius(10);
 		        a.setFill(cit_color);
-				rootGroup.getChildren().add(a);
-				b.setRadius(mobSize);
+		        rootGroup.getChildren().add(a);
+				//b.setRadius(mobSize);
 			}
 		}
 			
