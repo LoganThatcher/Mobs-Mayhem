@@ -95,9 +95,9 @@ public class MainMenuWindow {
 				        
 		//Button Actions
 		startGame.setOnAction(e -> {	    		
-			LoadWindow load = new LoadWindow(main,primaryStage);
-			primaryStage.getScene().setRoot(load.getRootGroup());
-			click2_player.play();		    		
+			StoryBoard1 sb1 = new StoryBoard1(main,primaryStage);
+    		primaryStage.getScene().setRoot(sb1.getRootGroup());
+    		click2_player.play();	    		
 		});
 				    	
 		settings.setOnAction(e -> {
