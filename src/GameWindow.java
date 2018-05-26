@@ -57,7 +57,6 @@ public class GameWindow
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
-		
 		mobSize = 10;
 		lives = 3;
 		life_counter = new Text(10,20,"Lives: " + lives);
@@ -75,8 +74,7 @@ public class GameWindow
 	    grid.setHgap(25);
 	    grid.setVgap(25);
 	    grid.setPadding(new Insets(25, 25, 25, 25));
-	      
-	      
+	     
 	    String roofurl = "assets/halloween-house.png";
 	    Image roofimg = new Image(roofurl);
 	    ImageView roof;
@@ -98,7 +96,7 @@ public class GameWindow
 		        moveCircleTowardPlayer(cop,player);
 		        moveCircleRandomly(cit);
 		        checkCollisions(cop, player, game, primaryStage);
-		        checkCollisions(cit,player, game, primaryStage);
+		        checkCollisions(cit, player, game, primaryStage);
 		        
 		        if(!moneys.isEmpty()) {
 		        	Circle curr_money = moneys.get(0);
@@ -110,7 +108,9 @@ public class GameWindow
 		circMover.play();
 
 		
-		// Character placements and settings	
+		// Character placements and settings
+		Random rand = new Random();
+		int pos = rand.nextInt(map_width)+1;
         player.setCenterX(map_width/2);
         player.setCenterY(map_height/2);
         player.setRadius(10);
@@ -121,12 +121,13 @@ public class GameWindow
         cop.setRadius(10);
         cop.setFill(cop_color);
         
-        cit.setCenterX(40);
-        cit.setCenterY(40);
+        cit.setCenterX(pos);
+        pos = rand.nextInt(map_height)+1;
+        cit.setCenterY(pos);
         cit.setRadius(10);
         cit.setFill(cit_color);
         
-        rootGroup.getChildren().addAll(player, cop,cit, life_counter, score_counter);
+        rootGroup.getChildren().addAll(player, cop, cit, life_counter, score_counter);
         moveCircleOnKeyPress(game, player,primaryStage);
 	}
 
@@ -157,6 +158,14 @@ public class GameWindow
 				mobSize += 1;
 				score += 10;
 				score_counter.setText("Score: " + score);
+				Random rand = new Random();
+				int pos = rand.nextInt(map_width)+1;
+				a.setCenterX(pos);
+		        pos = rand.nextInt(map_height)+1;
+		        a.setCenterY(pos);
+		        a.setRadius(10);
+		        a.setFill(cit_color);
+				rootGroup.getChildren().add(a);
 				b.setRadius(mobSize);
 			}
 		}
@@ -171,8 +180,7 @@ public class GameWindow
 		switch (direc) {
 	    	case 1:
 	    		if(!(cop.getCenterY() == 0))
-	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); 
-	    		break;
+	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 2: 
 	    		if(!(cop.getCenterX() == map_width))
 	    			cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
