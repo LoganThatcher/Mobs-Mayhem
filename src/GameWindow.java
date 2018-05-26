@@ -263,7 +263,7 @@ public class GameWindow
       }
 
     
-    private void pause(Stage primaryStage, Scene scene){
+      private void pause(Stage primaryStage, Scene scene){
     
 		try {
 			click_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
@@ -292,10 +292,10 @@ public class GameWindow
 	      
 	    Button resume = new Button("RESUME");
 	    Button restart = new Button("RESTART");
-	    Button settings = new Button("SETTINGS");
-	    Button instructions = new Button("INSTRUCTIONS");
+	    //Button settings = new Button("SETTINGS");
+	    //Button instructions = new Button("INSTRUCTIONS");
 	    Button quit = new Button("QUIT");
-	    pauseRoot.getChildren().addAll(resume,restart,settings,instructions,quit);
+	    pauseRoot.getChildren().addAll(resume,restart,quit);
 
 	    
 	    Stage popupStage = new Stage(StageStyle.TRANSPARENT);
@@ -308,16 +308,16 @@ public class GameWindow
 	    	rootGroup.setEffect(null);
 	      	popupStage.hide();
 	    });
-	    settings.setOnAction(e -> {
-    		SettingsWindow set = new SettingsWindow(scene, primaryStage);
-    		primaryStage.getScene().setRoot(set.getRootGroup());
+	    /*settings.setOnAction(e -> {
+    		PauseSettings pset = new PauseSettings(scene, primaryStage);
+    		primaryStage.getScene().setRoot(pset.getRootGroup());
     		popupStage.hide();
     	});
 	    instructions.setOnAction(e -> {
     		InstructionsWindow instruct = new InstructionsWindow(scene, primaryStage);
     		primaryStage.getScene().setRoot(instruct.getRootGroup());
     		popupStage.hide();
-    	});
+    	});*/
 	    quit.setOnAction(e -> {
 			MainMenuWindow main = new MainMenuWindow(scene, primaryStage);
 			primaryStage.getScene().setRoot(main.getRootGroup());
