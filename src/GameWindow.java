@@ -178,16 +178,16 @@ public class GameWindow
 		
 		switch (direc) {
 	    	case 1:
-	    		if(!(cop.getCenterY() == 0))
+	    		if(!(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA <= 0))
 	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 2: 
-	    		if(!(cop.getCenterX() == map_width))
+	    		if(!(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA >= map_width))
 	    			cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 3: 
-	    		if(!(cop.getCenterY() == map_height))
+	    		if(!(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA >= map_height))
 	    			cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 4:  
-	    		if(!(cop.getCenterX() == 0))
+	    		if(!(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA <= 0))
 	    			cop.setCenterX(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	default:
 	    		break;
@@ -223,22 +223,21 @@ public class GameWindow
 		}
 	}
     
-    private void moveCircleOnKeyPress(Scene scene, final Circle circle,Stage primaryStage) {
+    private void moveCircleOnKeyPress(Scene scene, final Circle circle, Stage primaryStage) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
           @Override public void handle(KeyEvent event) {
             switch (event.getCode()) {
             	case UP:
-            		if(!(circle.getCenterY() == 0))
-            			circle.setCenterY(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA); 
-            		break;
+            		if(!(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA <= 0))
+            			circle.setCenterY(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
             	case RIGHT: 
-            		if(!(circle.getCenterX() == map_width))
+            		if(!(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA >= map_width))
             			circle.setCenterX(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
             	case DOWN: 
-            		if(!(circle.getCenterY() == map_height))
+            		if(!(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA >= map_height))
             			circle.setCenterY(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
             	case LEFT:  
-            		if(!(circle.getCenterX() == 0))
+            		if(!(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA <= 0))
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
             		pause(primaryStage, scene);
