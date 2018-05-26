@@ -40,7 +40,7 @@ public class StartWindow extends Application
 		
 		pattern = new ImagePattern(img);
 		home.setFill(pattern);
-        stage.setTitle("Mobs & Mayhem");
+        stage.setTitle("Mob Mayhem");
 	
         //Declarations
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
