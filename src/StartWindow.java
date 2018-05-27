@@ -34,7 +34,8 @@ public class StartWindow extends Application
 		
 	@Override
     public void start(Stage stage) throws Exception
-    {	    	
+    {	   
+		
 		//Background Image
 		img = new Image("assets/start_screen.jpg");
 		

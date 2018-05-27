@@ -127,7 +127,7 @@ public class GameWindow
         cit.setFill(cit_color);
         
         rootGroup.getChildren().addAll(player, cop, cit, life_counter, score_counter);
-        moveCircleOnKeyPress(game, player,primaryStage);
+        moveCircleOnKeyPress(game, player,primaryStage,circMover);
 	}
 
 	private void checkCollisions(Circle a, Circle b, Scene game, Stage primaryStage) {
@@ -223,7 +223,7 @@ public class GameWindow
 		}
 	}
     
-    private void moveCircleOnKeyPress(Scene scene, final Circle circle, Stage primaryStage) {
+    private void moveCircleOnKeyPress(Scene scene, final Circle circle, Stage primaryStage, Timeline circMover) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
           @Override public void handle(KeyEvent event) {
             switch (event.getCode()) {
@@ -240,7 +240,7 @@ public class GameWindow
             		if(!(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA <= 0))
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
-            		pause(primaryStage, scene);
+            		pause(primaryStage, scene,circMover);
             	case SPACE: 
             		if(score >= 10) {
             			score = score - 10;
@@ -263,7 +263,8 @@ public class GameWindow
       }
 
     
-      private void pause(Stage primaryStage, Scene scene){
+      private void pause(Stage primaryStage, Scene scene, Timeline circMover){
+    	circMover.pause();
     
 		try {
 			click_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
@@ -307,6 +308,7 @@ public class GameWindow
 	    resume.setOnAction(e ->{
 	    	rootGroup.setEffect(null);
 	      	popupStage.hide();
+	      	circMover.play();
 	    });
 	    /*settings.setOnAction(e -> {
     		PauseSettings pset = new PauseSettings(scene, primaryStage);
@@ -333,8 +335,9 @@ public class GameWindow
 	            switch (event.getCode()) {
 	            	case ESCAPE: 
 	                 	click_player.play();
+	                 	circMover.play();
 	            		rootGroup.setEffect(null);
-	        	      	popupStage.hide();
+	        	      	popupStage.hide();	        	      	
 	            	default:
 	            		break;
 	            }
