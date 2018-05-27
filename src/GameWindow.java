@@ -32,9 +32,16 @@ public class GameWindow
 	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
-	private static final Color cop_color = Color.BLUE;
-	private static final Color player_color = Color.BLACK;
-	private static final Color cit_color = Color.ANTIQUEWHITE;
+//	private static final Color cop_color = Color.BLUE;
+//	private static final Color player_color = Color.BLACK;
+//	private static final Color cit_color = Color.ANTIQUEWHITE;
+	
+	// Setting image patterns to load images on top of the circles
+    private static final Image imCop = new Image("assets/cophead.png");
+    private static final ImagePattern ip_cop = new ImagePattern(imCop);        
+    private static final Image imCit = new Image("assets/civilianhead.png");
+    private static final ImagePattern ip_cit = new ImagePattern(imCit);
+	
 	ArrayList<Circle> moneys = new ArrayList<Circle>();
 	Iterator<Circle> iter = moneys.iterator();
 	private final Group rootGroup;	
@@ -112,19 +119,25 @@ public class GameWindow
 		int pos = rand.nextInt(map_width);
         player.setCenterX(map_width/2);
         player.setCenterY(map_height/2);
-        player.setRadius(10);
-        player.setFill(player_color);
+        player.setRadius(15);
+//        player.setFill(player_color);
+        Image imPlayer = new Image("assets/mobbosshead.png");
+        player.setFill(new ImagePattern(imPlayer));
         
         cop.setCenterX(140);
         cop.setCenterY(140);
         cop.setRadius(10);
-        cop.setFill(cop_color);
+//        cop.setFill(cop_color);
+        cop.setFill(ip_cop);
+        System.out.println(cop.getFill());
         
         cit.setCenterX(pos);
         pos = rand.nextInt(map_height);
         cit.setCenterY(pos);
         cit.setRadius(10);
-        cit.setFill(cit_color);
+//        cit.setFill(cit_color);
+        cit.setFill(ip_cit);
+       
         
         rootGroup.getChildren().addAll(player, cop, cit, life_counter, score_counter);
         moveCircleOnKeyPress(game, player,primaryStage,circMover);
@@ -132,7 +145,8 @@ public class GameWindow
 
 	private void checkCollisions(Circle a, Circle b, Scene game, Stage primaryStage) {
 		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
-			if(a.getFill() == cop_color) {
+			if (a.getFill() == ip_cop) {
+//			if(a.getFill() == cop_color) {
 				//System.out.println("You're arrested");	
 				if(lives == 1) {
 					//System.out.println("Game over, death sentence yo");
@@ -164,7 +178,8 @@ public class GameWindow
 		        pos = rand.nextInt(map_height);
 		        a.setCenterY(pos);
 		        a.setRadius(10);
-		        a.setFill(cit_color);
+//		        a.setFill(cit_color);
+		        a.setFill(ip_cit);
 		        rootGroup.getChildren().add(a);
 				//b.setRadius(mobSize);
 			}
