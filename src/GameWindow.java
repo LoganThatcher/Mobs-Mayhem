@@ -141,10 +141,11 @@ public class GameWindow
 				}
 				lives -= 1;
 				life_counter.setText("Lives: " + lives);
+				a.setCenterX(140);
+				a.setCenterY(140);
 				b.setRadius(10);
 				b.setCenterX(map_width/2);
 		        b.setCenterY(map_height/2);
-				
 			}
 			else if(a.getFill() == Color.GREEN) {
 				a.setFill(Color.TRANSPARENT);
