@@ -116,8 +116,8 @@ public class GameOverWindow {
     	});
     	
     	highScores.setOnAction(e -> {
-    		SettingsWindow set = new SettingsWindow(go, primaryStage);
-    		primaryStage.getScene().setRoot(set.getRootGroup());
+    		HighScoreWindow hs = new HighScoreWindow(go, primaryStage);
+    		primaryStage.getScene().setRoot(hs.getRootGroup());
     		click2_player.play();
     	});
     	
