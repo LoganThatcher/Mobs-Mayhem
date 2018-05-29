@@ -44,13 +44,13 @@ public class InstructionsWindow {
 		ImagePattern pattern = new ImagePattern(img);
 		instruct.setFill(pattern);
 		
-		// Placeholder images and text for the actual instructions!
-		String screenshotUrl = "assets/testimage.jpg";
-		Image screenshot = new Image(screenshotUrl);
-		ImageView imageView = new ImageView(screenshot);
-		imageView.setX(225);
-		imageView.setY(150);
-		imageView.setFitHeight(350);
+		// Instructions Image
+		String instructions = "assets/instructions.png";
+		Image im_instructions = new Image(instructions);
+		ImageView imageView = new ImageView(im_instructions);
+		imageView.setX(115);
+		imageView.setY(125);
+		imageView.setFitHeight(400);
 		imageView.setPreserveRatio(true);
 		
 		// Setting Title
