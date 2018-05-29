@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class HighScoreWindow {
 
 	private final Group rootGroup;
-	private final Text t, t2, t3, t4;
+	private final Text t, t2, t3, t4, t5, t6;
 	boolean muted;
 
 	public HighScoreWindow(Scene hs, Stage primaryStage)
@@ -31,6 +31,8 @@ public class HighScoreWindow {
 		t2 = new Text();
 		t3 = new Text();
 		t4 = new Text();
+		t5 = new Text();
+		t6 = new Text();
 		Button back = new Button("Back To Main Menu");
 		String url = "assets/blackscreen.png";
 		Image img = new Image(url);
@@ -45,20 +47,30 @@ public class HighScoreWindow {
 		t2.setY(100.0);
 		font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 40);
 		t.setFont(font);
-		t.setText("Davide       300");
+		t.setText("Jason        300");
 		t.setFill(Color.WHITE);
 		t.setX(375.0);
 		t.setY(200.0);
 		t3.setFont(font);
-		t3.setText("Jason        275");
+		t3.setText("Danica       275");
 		t3.setFill(Color.WHITE);
 		t3.setX(375.0);
 		t3.setY(245.0);
 		t4.setFont(font);
-		t4.setText("Lindsey      270");
+		t4.setText("Anshula      270");
 		t4.setFill(Color.WHITE);
 		t4.setX(375.0);
 		t4.setY(290.0);
+		t5.setFont(font);
+		t5.setText("Logan        250");
+		t5.setFill(Color.WHITE);
+		t5.setX(375.0);
+		t5.setY(335.0);
+		t6.setFont(font);
+		t6.setText("Lindsey      200");
+		t6.setFill(Color.WHITE);
+		t6.setX(375.0);
+		t6.setY(380.0);
 		
 		//Button Positioning and Size
 		back.setLayoutX(600);
@@ -72,7 +84,7 @@ public class HighScoreWindow {
         	click_player.play();
         });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
-		rootGroup.getChildren().addAll(back, t, t2, t3, t4);
+		rootGroup.getChildren().addAll(back, t, t2, t3, t4, t5, t6);
 		
 		//Button Actions
 		back.setOnAction(e -> {
