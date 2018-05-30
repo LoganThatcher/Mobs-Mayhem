@@ -52,7 +52,7 @@ public class HighScoreWindow {
 		t.setX(375.0);
 		t.setY(200.0);
 		t3.setFont(font);
-		t3.setText("Danica       275");
+		t3.setText("Danica       280");
 		t3.setFill(Color.WHITE);
 		t3.setX(375.0);
 		t3.setY(245.0);
