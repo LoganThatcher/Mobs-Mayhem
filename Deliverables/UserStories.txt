@@ -1,0 +1,28 @@
+1. As a beginner, I want to only use the arrow keys for player movement, so the game can be simple to play.
+
+2. As a competitive player, I want the game to keep track of a score, so I can keep track of how well I am doing this round.
+
+3. As a player, I want the game to have a story, so it is more interesting to play. 
+
+4. As a competitive player, I want to see the top 5 high scores, so that I can see how I compare to top players.
+
+5. As a novice player, I want instructions, so that I can learn how to play the game.
+
+6. As a frequent player, I want to skip the story screens, so that I can play the game more quickly.
+
+7. As a user, I want the game to provide tips, so I can play the game more confidently.
+
+8. As a user, I want a restart option, so I can start over if I make a mistake.
+
+9. As a user, I want the option to quit during the game, in case I need to stop playing.
+
+10. As a user, I want to adjust the volume level, so that I can cater to my physical surroundings.
+
+11. As a player, I want to move in more than one direction, so that I can navigate effectively.
+
+12. As a user, I want a pause option, so that I can temporarily stop my game play.
+13. As a user, I want background music, so that the game is more immersive.
+
+14. As a novice player, I want to have multiple lives, to make the game easier and more forgiving.
+
+15. As a player, I want to distract the police, so I can more easily convert community members.
