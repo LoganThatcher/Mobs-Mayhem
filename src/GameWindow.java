@@ -61,6 +61,9 @@ public class GameWindow
 		Timeline circMover;
 		
 		Circle cop = new Circle();
+		Circle cop2 = new Circle();
+		Circle cop3 = new Circle();
+		Circle cop4 = new Circle();
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
@@ -120,14 +123,12 @@ public class GameWindow
         player.setCenterX(map_width/2);
         player.setCenterY(map_height/2);
         player.setRadius(15);
-//        player.setFill(player_color);
         Image imPlayer = new Image("assets/mobbosshead.png");
         player.setFill(new ImagePattern(imPlayer));
         
         cop.setCenterX(140);
         cop.setCenterY(140);
         cop.setRadius(10);
-//        cop.setFill(cop_color);
         cop.setFill(ip_cop);
         System.out.println(cop.getFill());
         
@@ -135,7 +136,6 @@ public class GameWindow
         pos = rand.nextInt(map_height);
         cit.setCenterY(pos);
         cit.setRadius(10);
-//        cit.setFill(cit_color);
         cit.setFill(ip_cit);
        
         
@@ -146,10 +146,7 @@ public class GameWindow
 	private void checkCollisions(Circle a, Circle b, Scene game, Stage primaryStage) {
 		if(a.getBoundsInParent().intersects(b.getBoundsInParent())) {
 			if (a.getFill() == ip_cop) {
-//			if(a.getFill() == cop_color) {
-				//System.out.println("You're arrested");	
 				if(lives == 1) {
-					//System.out.println("Game over, death sentence yo");
 					GameOverWindow go = new GameOverWindow(game,primaryStage);
 		    		primaryStage.getScene().setRoot(go.getRootGroup());
 				}
@@ -166,10 +163,8 @@ public class GameWindow
 				moneys.remove(a);
 			}
 			else{
-				//System.out.println("+1 Homies");
 				a.setRadius(0);
 				rootGroup.getChildren().remove(a);
-				//mobSize += 1;
 				score += 10;
 				score_counter.setText("Score: " + score);
 				Random rand = new Random();
@@ -178,10 +173,8 @@ public class GameWindow
 		        pos = rand.nextInt(map_height);
 		        a.setCenterY(pos);
 		        a.setRadius(10);
-//		        a.setFill(cit_color);
 		        a.setFill(ip_cit);
 		        rootGroup.getChildren().add(a);
-				//b.setRadius(mobSize);
 			}
 		}
 			

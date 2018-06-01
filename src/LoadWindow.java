@@ -47,7 +47,7 @@ public class LoadWindow
     	progress.setFill(Color.WHITE);
     	progress.setStyle("-fx-font-size: 75");
     	
-    	tip = new Text(350,275,"Tip: 25 cents");
+    	tip = new Text(350,275,"Tip: Avoid police to avoid going to jail");
     	tip.setFont(font);
     	tip.setFill(Color.WHITE);
     	tip.setStyle("-fx-font-size: 50");
