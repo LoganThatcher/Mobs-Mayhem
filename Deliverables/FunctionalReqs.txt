@@ -1,0 +1,29 @@
+1. The system shall provide the player’s score. 
+
+2. The system shall provide game instructions.
+
+3. The system shall display the number of lives the player has.
+
+4. The system shall provide a new community member character every time one is converted.
+
+5. The system shall provide a restart option.
+
+6. The system shall provide an end game state once the user is caught by the police 3 times.
+
+7. The system shall display 2D characters.
+
+8. The system shall provide the top 5 scores.
+
+9. The system shall provide a tip for the player.
+
+10. The system shall provide a quit option.
+
+11. The system shall provide a volume setting.
+
+12. The system shall provide a pause option.
+
+13. The system shall provide a way for the player to distract the police.
+
+14. The system shall provide a background song throughout the game.
+
+15. The system shall provide a background story.
