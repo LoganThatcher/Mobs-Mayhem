@@ -34,6 +34,7 @@ public class GameWindow
 	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
+	private static final int num_cops = 3;
 
 	
 	// Setting image patterns to load images on top of the circles
@@ -60,15 +61,9 @@ public class GameWindow
 		ImagePattern pattern = new ImagePattern(img);
 		Timeline circMover;
 		
+		cops = giveBirthToCops(num_cops);
 		
-		Circle cop = new Circle();
-		Circle cop2 = new Circle();
-		Circle cop3 = new Circle();
-		Circle cop4 = new Circle();
-		cops.add(cop);
-		cops.add(cop2);
-		cops.add(cop3);
-		cops.add(cop4);
+		Circle cop = cops.get(0);
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
@@ -84,25 +79,9 @@ public class GameWindow
 		rootGroup = new Group();
 
 	    //Background
-	    GridPane grid = new GridPane();
-	    grid.setAlignment(Pos.TOP_LEFT);
-	    grid.setHgap(25);
-	    grid.setVgap(25);
-	    grid.setPadding(new Insets(25, 25, 25, 25));
-	     
-	    String roofurl = "logic/assets/halloween-house.png";
-	    Image roofimg = new Image(roofurl);
-	    ImageView roof;
-	      
-	    for (int i = 0; i < 5; i++) {
-	       for (int j = 0; j < 8; j++) {
-	          roof = new ImageView(roofimg);
-	          roof.setFitHeight(90);
-	          roof.setFitWidth(85);
-	          grid.add(roof, j, i);
-	       }
-	    }
-	      
+	    GridPane grid = setupBackground();
+	   
+
 	    rootGroup.getChildren().add(grid);
 			
 		circMover = new Timeline(new KeyFrame(Duration.millis(300), new EventHandler<ActionEvent>() {
@@ -131,6 +110,40 @@ public class GameWindow
         moveCircleOnKeyPress(game, player,primaryStage,circMover);
 	}
 	
+	public static ArrayList<Circle> giveBirthToCops(int total_cops){
+		ArrayList<Circle> c = new ArrayList<Circle>();
+		
+		for(int i=0; i < total_cops; i++) {
+			Circle cop = new Circle();
+			c.add(cop);
+		}
+		
+		return c;
+	}
+	private GridPane setupBackground() {
+		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.TOP_LEFT);
+		grid.setHgap(25);
+		grid.setVgap(25);
+		grid.setPadding(new Insets(25, 25, 25, 25));
+		
+		String roofurl = "logic/assets/halloween-house.png";
+	    Image roofimg = new Image(roofurl);
+	    ImageView roof;
+	    
+	    for (int i = 0; i < 5; i++) {
+		       for (int j = 0; j < 8; j++) {
+		          roof = new ImageView(roofimg);
+		          roof.setFitHeight(90);
+		          roof.setFitWidth(85);
+		          grid.add(roof, j, i);
+		       }
+		}
+	    return grid;
+	    
+	}
+	
+	
 	// Character placements and settings
 	private void setCharacterPlacement(ArrayList<Circle> cops, Circle cit, Circle player) {
 		Random rand = new Random();
@@ -144,7 +157,6 @@ public class GameWindow
 		for(Circle c : cops) {
 			c.setCenterX(140);
 	        c.setCenterY(140);
-	        c.setRadius(0);
 	        c.setFill(ip_cop);
 		}
 		cops.get(0).setRadius(10);
@@ -181,7 +193,15 @@ public class GameWindow
 				score += 10;
 				if(score == 20) {
 					cops.get(1).setRadius(20);
-					rootGroup.getChildren().addAll(cops.get(1));
+					cops.get(1).setCenterX(300);
+					cops.get(1).setCenterY(300);
+					rootGroup.getChildren().add(cops.get(1));
+				}
+				if(score == 30) {
+					cops.get(2).setRadius(30);
+					cops.get(2).setCenterX(400);
+					cops.get(2).setCenterY(400);
+					rootGroup.getChildren().add(cops.get(2));
 				}
 				score_counter.setText("Score: " + score);
 				Random rand = new Random();
