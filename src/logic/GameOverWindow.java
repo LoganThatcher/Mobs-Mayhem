@@ -59,7 +59,7 @@ public class GameOverWindow {
     	menu.setFont(font);
     	
    	
-		img = new Image("assets/blackscreen.png");
+		img = new Image("logic/assets/blackscreen.png");
 		
 		pattern = new ImagePattern(img);
 		go.setFill(pattern);

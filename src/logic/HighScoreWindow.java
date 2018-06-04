@@ -33,7 +33,7 @@ public class HighScoreWindow {
 		t5 = new Text();
 		t6 = new Text();
 		Button back = new Button("Back To Main Menu");
-		String url = "assets/blackscreen.png";
+		String url = "logic/assets/blackscreen.png";
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		hs.setFill(pattern);
