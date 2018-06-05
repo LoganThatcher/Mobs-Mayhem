@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ GameWindowLoopTest.class })
+@SuiteClasses({ DrawHousesTests.class, GameWindowLoopTest.class })
 public class LoopTests {
 
 }
